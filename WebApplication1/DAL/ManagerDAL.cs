@@ -30,6 +30,52 @@ namespace WebApplication1.DAL
             return sp_result;
         }
 
+        //-------------------------------- MANAGER COMMUNITY------------------------------------------------
+        public ISingleResult<sp_ManagerCommunity_Load_ListResult> ManagerCommunity_Load()
+        {
+            ISingleResult<sp_ManagerCommunity_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ManagerCommunity_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
+        //-------------------------------- MANAGER EVENT------------------------------------------------
+        public ISingleResult<sp_ManagerEvent_Load_ListResult> ManagerEvent_Load()
+        {
+            ISingleResult<sp_ManagerEvent_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ManagerEvent_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
+
+        //-------------------------------- MANAGER POST------------------------------------------------
+        public ISingleResult<sp_ManagerPost_Load_ListResult> ManagerPost_Load()
+        {
+            ISingleResult<sp_ManagerPost_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ManagerPost_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
         //-------------------------------- INSERT------------------------------------------------
         public ISingleResult<sp_Manager_InsertResult> Insert(RequestManager req)
         {

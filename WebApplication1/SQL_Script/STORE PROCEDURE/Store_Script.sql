@@ -924,10 +924,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROC [dbo].[sp_ParticipantEvent_Load_List]
 AS
-	SELECT Participant.*,Event.*,SupportType.TypeName,Local.LocalName
-	FROM Participant
+	SELECT p.ParticipantId,p.ParticipantName,p.Address,p.Email,p.Phone,p.Gender,p.DonateAmount AS DonateByParticipant,p.Birth,p.UserId
+	,Event.*,SupportType.TypeName,Local.LocalName
+	FROM Participant p
 	INNER JOIN ParticipantEvent
-	ON ParticipantEvent.ParticipantId = Participant.ParticipantId
+	ON ParticipantEvent.ParticipantId = p.ParticipantId
 	INNER JOIN Event 
 	ON ParticipantEvent.EventId = Event.EventId
 	INNER JOIN SupportType

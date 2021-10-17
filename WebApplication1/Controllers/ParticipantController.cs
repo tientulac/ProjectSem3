@@ -14,25 +14,26 @@ using WebApplication1.Models.OutputModel;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Manager")]
+    [RoutePrefix("Participant")]
     [AllowAnonymous]
-    public class ManagerController : ApiController
+    public class ParticipantController : ApiController
     {
         private LinqDataContext db = new LinqDataContext();
-        ManagerDAL managerDAL = new ManagerDAL();
+        ParticipantDAL participantDAL = new ParticipantDAL();
         //-------------------------------- GET ALL--------------------------------------------
         [HttpGet]
         [Route("Load_List")]
         public async Task<HttpResponseMessage> Load_List()
         {
-            ResponseManager res = new ResponseManager();
+            ResponseParticipant res = new ResponseParticipant();
             try
             {
-                var lst = (from a in managerDAL.Load_List()
-                           select new RequestManager
+                var lst = (from a in participantDAL.Load_List()
+                           select new RequestParticipant
                            {
-                               ManagerId = a.ManagerId,
-                               ManagerName = a.ManagerName,
+                               ParticipantId = a.ParticipantId,
+                               ParticipantName = a.ParticipantName,
+                               DonateAmount = a.DonateAmount.GetValueOrDefault(),
                                Address = a.Address,
                                Email = a.Email,
                                Phone = a.Phone,
@@ -61,17 +62,18 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("ManagerCommunity_Load")]
-        public async Task<HttpResponseMessage> ManagerCommunity_Load()
+        [Route("ParticipantCommunity_Load")]
+        public async Task<HttpResponseMessage> ParticipantCommunity_Load()
         {
-            ResponseManager res = new ResponseManager();
+            ResponseParticipant res = new ResponseParticipant();
             try
             {
-                var lst = (from a in managerDAL.ManagerCommunity_Load()
-                           select new RequestManagerCommunityDTO
+                var lst = (from a in participantDAL.ParticipantCommunity_Load()
+                           select new RequestParticipantCommunityDTO
                            {
-                               ManagerId = a.ManagerId,
-                               ManagerName = a.ManagerName,
+                               ParticipantId = a.ParticipantId,
+                               ParticipantName = a.ParticipantName,
+                               DonateAmount = a.DonateAmount.GetValueOrDefault(),
                                Address = a.Address,
                                Email = a.Email,
                                Phone = a.Phone,
@@ -110,17 +112,17 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("ManagerEvent_Load")]
-        public async Task<HttpResponseMessage> ManagerEvent_Load()
+        [Route("ParticipantEvent_Load")]
+        public async Task<HttpResponseMessage> ParticipantEvent_Load()
         {
-            ResponseManager res = new ResponseManager();
+            ResponseParticipant res = new ResponseParticipant();
             try
             {
-                var lst = (from a in managerDAL.ManagerEvent_Load()
-                           select new RequestManagerEventDTO
+                var lst = (from a in participantDAL.ParticipantEvent_Load()
+                           select new RequestParticipantEventDTO
                            {
-                               ManagerId = a.ManagerId,
-                               ManagerName = a.ManagerName,
+                               ParticipantId = a.ParticipantId,
+                               ParticipantName = a.ParticipantName,
                                Address = a.Address,
                                Email = a.Email,
                                Phone = a.Phone,
@@ -141,7 +143,8 @@ namespace WebApplication1.Controllers
                                Status = a.Status.GetValueOrDefault(),
                                TypeName = a.TypeName,
                                LocalName = a.LocalName,
-                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
+                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
+                               DonateByParticipant = a.DonateByParticipant.GetValueOrDefault()
                            }).ToList();
                 res.DataEvent = lst;
                 res.Status = StatusID.Success;
@@ -163,17 +166,17 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("ManagerPost_Load")]
-        public async Task<HttpResponseMessage> ManagerPost_Load()
+        [Route("ParticipantPost_Load")]
+        public async Task<HttpResponseMessage> ParticipantPost_Load()
         {
-            ResponseManager res = new ResponseManager();
+            ResponseParticipant res = new ResponseParticipant();
             try
             {
-                var lst = (from a in managerDAL.ManagerPost_Load()
-                           select new RequestManagerPostDTO
+                var lst = (from a in participantDAL.ParticipantPost_Load()
+                           select new RequestParticipantPostDTO
                            {
-                               ManagerId = a.ManagerId,
-                               ManagerName = a.ManagerName,
+                               ParticipantId = a.ParticipantId,
+                               ParticipantName = a.ParticipantName,
                                Address = a.Address,
                                Email = a.Email,
                                Phone = a.Phone,
@@ -190,7 +193,8 @@ namespace WebApplication1.Controllers
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
                                TypeId = a.TypeId.GetValueOrDefault(),
                                TypeName = a.TypeName,
-                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
+                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
+                               DonateAmount = a.DonateAmount.GetValueOrDefault()
                            }).ToList();
                 res.DataPost = lst;
                 res.Status = StatusID.Success;
@@ -210,15 +214,16 @@ namespace WebApplication1.Controllers
 
             return await Task.FromResult(responseResult);
         }
+
         //-------------------------------- INSERT--------------------------------------------
         [HttpPost]
         [Route("Insert")]
-        public async Task<ResponseBase> Insert(RequestManager req)
+        public async Task<ResponseBase> Insert(RequestParticipant req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = managerDAL.Insert(req);
+                var rs = participantDAL.Insert(req);
 
                 int err_com = 0;
                 int success_com = 0;
@@ -233,45 +238,45 @@ namespace WebApplication1.Controllers
                     {
                         foreach (var com in req.List_com)
                         {
-                            var rs_com = db.sp_ManagerCommunity_Insert(req.ManagerId, req.CommunityId);
+                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId);
                             if (rs_com.Any())
                             {
-                                success_com ++;
+                                success_com++;
                             }
                             else
                             {
-                                err_com ++;
+                                err_com++;
                             }
                         }
                     }
                     if (req.List_event.Count() > 0)
                     {
-                        var rs_event = db.sp_ManagerEvent_Insert(req.ManagerId, req.EventId);
+                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId);
                         if (rs_event.Any())
                         {
-                            success_event ++;
+                            success_event++;
                         }
                         else
                         {
-                            err_event ++;
+                            err_event++;
                         }
                     }
                     if (req.List_post.Count() > 0)
                     {
-                        var rs_post = db.sp_ManagerPost_Insert(req.ManagerId, req.PostId);
+                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId);
                         if (rs_post.Any())
                         {
-                            success_post ++;
+                            success_post++;
                         }
                         else
                         {
-                            err_post ++;
+                            err_post++;
                         }
                     }
                     res.Status = StatusID.Success;
                     res.Message = String.Format(
-                        "Thêm mới thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người quản lý",
-                        success_com,success_event,success_post,err_com,err_event,err_post
+                        "Thêm mới thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người tham gia",
+                        success_com, success_event, success_post, err_com, err_event, err_post
                         );
                 }
                 else
@@ -291,17 +296,17 @@ namespace WebApplication1.Controllers
         //-------------------------------- UPDATE--------------------------------------------
         [HttpPost]
         [Route("Update")]
-        public async Task<ResponseBase> Update(RequestManager req)
+        public async Task<ResponseBase> Update(RequestParticipant req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = managerDAL.Update(req);
+                var rs = participantDAL.Update(req);
                 if (rs.FirstOrDefault().Updated > 0)
                 {
-                    var delete_com = db.sp_ManagerCommunity_Delete(req.ManagerId);
-                    var delete_vent = db.sp_ManagerEvent_Delete(req.ManagerId);
-                    var delete_post = db.sp_ManagerPost_Delete(req.ManagerId);
+                    var delete_com = db.sp_ParticipantCommunity_Delete(req.ParticipantId);
+                    var delete_vent = db.sp_ParticipantEvent_Delete(req.ParticipantId);
+                    var delete_post = db.sp_ParticipantPost_Delete(req.ParticipantId);
                     int err_com = 0;
                     int success_com = 0;
                     int err_event = 0;
@@ -315,7 +320,7 @@ namespace WebApplication1.Controllers
                         {
                             foreach (var com in req.List_com)
                             {
-                                var rs_com = db.sp_ManagerCommunity_Insert(req.ManagerId, req.CommunityId);
+                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId);
                                 if (rs_com.Any())
                                 {
                                     success_com++;
@@ -328,7 +333,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_event.Count() > 0)
                         {
-                            var rs_event = db.sp_ManagerEvent_Insert(req.ManagerId, req.EventId);
+                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId);
                             if (rs_event.Any())
                             {
                                 success_event++;
@@ -340,7 +345,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_post.Count() > 0)
                         {
-                            var rs_post = db.sp_ManagerPost_Insert(req.ManagerId, req.PostId);
+                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId);
                             if (rs_post.Any())
                             {
                                 success_post++;
@@ -352,7 +357,7 @@ namespace WebApplication1.Controllers
                         }
                         res.Status = StatusID.Success;
                         res.Message = String.Format(
-                            "Cập nhật thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người quản lý",
+                            "Thêm mới thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người tham gia",
                             success_com, success_event, success_post, err_com, err_event, err_post
                             );
                     }
@@ -374,12 +379,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- DELETE--------------------------------------------
         [HttpGet]
         [Route("Delete")]
-        public async Task<ResponseBase> Delete(int ManagerId)
+        public async Task<ResponseBase> Delete(int ParticipantId)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = managerDAL.Delete(ManagerId);
+                var rs = participantDAL.Delete(ParticipantId);
                 if (rs.FirstOrDefault().Deleted > 0)
                 {
                     res.Status = StatusID.Success;

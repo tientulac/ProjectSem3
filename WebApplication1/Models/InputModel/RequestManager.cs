@@ -15,6 +15,13 @@ namespace WebApplication1.Models.InputModel
         public bool Gender { get; set; }
         public DateTime Birth { get; set; }
         public int UserId { get; set; }
+        public string GenderName { get; set; }
+        public int CommunityId { get; set; }
+        public int EventId { get; set; }
+        public int PostId { get; set; }
+        public List<int> List_com { get; set; }
+        public List<int> List_event { get; set; }
+        public List<int> List_post { get; set; }
     }
 
     public class RequestManagerCommunityDTO {
@@ -26,6 +33,7 @@ namespace WebApplication1.Models.InputModel
         public bool Gender { get; set; }
         public DateTime Birth { get; set; }
         public int UserId { get; set; }
+        public string GenderName { get; set; }
         public int CommunityId { get; set; }
         public string CommunityName { get; set; }
         public string Description { get; set; }
@@ -47,6 +55,7 @@ namespace WebApplication1.Models.InputModel
         public bool Gender { get; set; }
         public DateTime Birth { get; set; }
         public int UserId { get; set; }
+        public string GenderName { get; set; }
         public int EventId { get; set; }
         public string EventName { get; set; }
         public DateTime FromDate { get; set; }
@@ -70,6 +79,7 @@ namespace WebApplication1.Models.InputModel
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool Gender { get; set; }
+        public string GenderName { get; set; }
         public DateTime Birth { get; set; }
         public int UserId { get; set; }
         public int PostId { get; set; }

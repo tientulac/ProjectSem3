@@ -30,6 +30,52 @@ namespace WebApplication1.DAL
             return sp_result;
         }
 
+        //-------------------------------- PARTICIPANT COMMUNITY------------------------------------------------
+        public ISingleResult<sp_ParticipantCommunity_Load_ListResult> ParticipantCommunity_Load()
+        {
+            ISingleResult<sp_ParticipantCommunity_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantCommunity_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
+        //-------------------------------- PARTICIPANT EVENT------------------------------------------------
+        public ISingleResult<sp_ParticipantEvent_Load_ListResult> ParticipantEvent_Load()
+        {
+            ISingleResult<sp_ParticipantEvent_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantEvent_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
+
+        //-------------------------------- PARTICIPANT POST------------------------------------------------
+        public ISingleResult<sp_ParticipantPost_Load_ListResult> ParticipantPost_Load()
+        {
+            ISingleResult<sp_ParticipantPost_Load_ListResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantPost_Load_List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
         //-------------------------------- INSERT------------------------------------------------
         public ISingleResult<sp_Participant_InsertResult> Insert(RequestParticipant req)
         {
