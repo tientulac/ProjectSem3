@@ -169,6 +169,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SupportTypeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

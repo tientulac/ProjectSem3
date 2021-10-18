@@ -90,7 +90,8 @@ namespace WebApplication1.Controllers
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
                                TypeId = a.TypeId.GetValueOrDefault(),
                                TypeName = a.TypeName,
-                               Url = a.Url
+                               Url = a.Url,
+                               Money = a.Money.GetValueOrDefault()
                            }).ToList();
                 res.DataCom = lst;
                 res.Status = StatusID.Success;
@@ -144,7 +145,8 @@ namespace WebApplication1.Controllers
                                TypeName = a.TypeName,
                                LocalName = a.LocalName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
-                               DonateByParticipant = a.DonateByParticipant.GetValueOrDefault()
+                               DonateByParticipant = a.DonateByParticipant.GetValueOrDefault(),
+                               Money = a.Money.GetValueOrDefault()
                            }).ToList();
                 res.DataEvent = lst;
                 res.Status = StatusID.Success;
@@ -194,7 +196,8 @@ namespace WebApplication1.Controllers
                                TypeId = a.TypeId.GetValueOrDefault(),
                                TypeName = a.TypeName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
-                               DonateAmount = a.DonateAmount.GetValueOrDefault()
+                               DonateAmount = a.DonateAmount.GetValueOrDefault(),
+                               Money = a.Money.GetValueOrDefault()
                            }).ToList();
                 res.DataPost = lst;
                 res.Status = StatusID.Success;
@@ -238,7 +241,7 @@ namespace WebApplication1.Controllers
                     {
                         foreach (var com in req.List_com)
                         {
-                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId);
+                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money);
                             if (rs_com.Any())
                             {
                                 success_com++;
@@ -251,7 +254,7 @@ namespace WebApplication1.Controllers
                     }
                     if (req.List_event.Count() > 0)
                     {
-                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId);
+                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money);
                         if (rs_event.Any())
                         {
                             success_event++;
@@ -263,7 +266,7 @@ namespace WebApplication1.Controllers
                     }
                     if (req.List_post.Count() > 0)
                     {
-                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId);
+                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money);
                         if (rs_post.Any())
                         {
                             success_post++;
@@ -320,7 +323,7 @@ namespace WebApplication1.Controllers
                         {
                             foreach (var com in req.List_com)
                             {
-                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId);
+                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money);
                                 if (rs_com.Any())
                                 {
                                     success_com++;
@@ -333,7 +336,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_event.Count() > 0)
                         {
-                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId);
+                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money);
                             if (rs_event.Any())
                             {
                                 success_event++;
@@ -345,7 +348,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_post.Count() > 0)
                         {
-                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId);
+                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money);
                             if (rs_post.Any())
                             {
                                 success_post++;

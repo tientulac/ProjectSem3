@@ -20,6 +20,7 @@ namespace WebApplication1.Models.InputModel
         public int CommunityId { get; set; }
         public int EventId { get; set; }
         public int PostId { get; set; }
+        public decimal Money { get; set; }
         public List<int> List_com { get; set; }
         public List<int> List_event { get; set; }
         public List<int> List_post { get; set; }
@@ -47,6 +48,7 @@ namespace WebApplication1.Models.InputModel
         public int LocalId { get; set; }
         public string TypeName { get; set; }
         public string LocalName { get; set; }
+        public decimal Money { get; set; }
     }
 
     public class RequestParticipantEventDTO {
@@ -74,6 +76,7 @@ namespace WebApplication1.Models.InputModel
         public string LocalName { get; set; }
         public string StatusName { get; set; }
         public decimal DonateByParticipant { get; set; }
+        public decimal Money { get; set; }
     }
 
     public class RequestParticipantPostDTO
@@ -98,5 +101,6 @@ namespace WebApplication1.Models.InputModel
         public int TypeId { get; set; }
         public string TypeName { get; set; }
         public string StatusName { get; set; }
+        public decimal Money { get; set; }
     }
 }
