@@ -32,8 +32,8 @@ namespace WebApplication1.Controllers
                 var lst = (from a in stDAL.Load_List()
                            select new RequestSupportType
                            {
-                               TypeId = a.TypeId,
-                               TypeName = a.TypeName
+                               SupportTypeId = a.SupportTypeId,
+                               SupportTypeName = a.SupportTypeName
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;

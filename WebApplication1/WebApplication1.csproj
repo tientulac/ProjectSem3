@@ -181,6 +181,7 @@
     <Compile Include="DAL\ManagerDAL.cs" />
     <Compile Include="DAL\ParticipantDAL.cs" />
     <Compile Include="DAL\PostDAL.cs" />
+    <Compile Include="DAL\PostTypeDAL.cs" />
     <Compile Include="DAL\SupportTypeDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +195,7 @@
     <Compile Include="Models\InputModel\RequestManager.cs" />
     <Compile Include="Models\InputModel\RequestParticipant.cs" />
     <Compile Include="Models\InputModel\RequestPost.cs" />
+    <Compile Include="Models\InputModel\RequestPostType.cs" />
     <Compile Include="Models\InputModel\RequestSupportType.cs" />
     <Compile Include="Models\Linq.designer.cs">
       <AutoGen>True</AutoGen>
