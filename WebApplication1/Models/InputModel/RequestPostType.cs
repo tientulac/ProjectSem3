@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WebApplication1.Models.InputModel
 {
-    public class RequestSupportType
+    public class RequestPostType
     {
-        public int SupportTypeId { get; set; }
-        public string SupportTypeName { get; set; }
+        public int PostTypeId { get; set; }
+        public string PostTypeName { get; set; }
     }
 }

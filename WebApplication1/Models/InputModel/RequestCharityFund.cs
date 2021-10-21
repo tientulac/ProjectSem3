@@ -10,7 +10,7 @@ namespace WebApplication1.Models.InputModel
         public int FundId { get; set; }
         public string FundName { get; set; }
         public decimal TotalAmount { get; set; }
-        public int TypeId { get; set; }
+        public int SupportTypeId { get; set; }
     }
 
     public class RequestCharityFundDTO
@@ -18,7 +18,7 @@ namespace WebApplication1.Models.InputModel
         public int FundId { get; set; }
         public string FundName { get; set; }
         public decimal TotalAmount { get; set; }
-        public int TypeId { get; set; }
-        public string TypeName { get; set; }
+        public int SupportTypeId { get; set; }
+        public string SupportTypeName { get; set; }
     }
 }

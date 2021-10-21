@@ -39,9 +39,9 @@ namespace WebApplication1.Controllers
                                Phone = a.Phone,
                                TotalAmount = a.ToTalAmount.GetValueOrDefault(),
                                Status = a.Status.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
                                LocalId = a.LocalId.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeName = a.SupportTypeName,
                                LocalName = a.LocalName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt" 
                            }).ToList();

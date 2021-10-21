@@ -40,10 +40,10 @@ namespace WebApplication1.Controllers
                                Slot = a.Slot.GetValueOrDefault(),
                                DesiredAmount = a.DesiredAmount.GetValueOrDefault(),
                                DonateAmount = a.DonateAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
                                LocalId = a.LocalId.GetValueOrDefault(),
                                Status = a.Status.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeName = a.SupportTypeName,
                                LocalName = a.LocalName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
                            }).ToList();

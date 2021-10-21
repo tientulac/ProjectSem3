@@ -40,9 +40,9 @@ namespace WebApplication1.Models.InputModel
         public string Url { get; set; }
         public int Slot { get; set; }
         public decimal TotalAmount { get; set; }
-        public int TypeId { get; set; }
+        public int SupportTypeId { get; set; }
         public int LocalId { get; set; }
-        public string TypeName { get; set; }
+        public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
     }
 
@@ -64,10 +64,10 @@ namespace WebApplication1.Models.InputModel
         public int Slot { get; set; }
         public decimal DesiredAmount { get; set; }
         public decimal DonateAmount { get; set; }
-        public int TypeId { get; set; }
+        public int SupportTypeId { get; set; }
         public int LocalId { get; set; }
         public int Status { get; set; }
-        public string TypeName { get; set; }
+        public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public string StatusName { get; set; }
     }
@@ -89,8 +89,10 @@ namespace WebApplication1.Models.InputModel
         public string Image { get; set; }
         public int Status { get; set; }
         public decimal TotalAmount { get; set; }
-        public int TypeId { get; set; }
-        public string TypeName { get; set; }
+        public int SupportTypeId { get; set; }
+        public string SupportTypeName { get; set; }
         public string StatusName { get; set; }
+        public int PostTypeId { get; set; }
+        public string PostTypeName { get; set; }
     }
 }

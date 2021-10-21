@@ -37,7 +37,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_SupportType_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_SupportType_Insert(req.TypeName);
+                sp_result = db.sp_SupportType_Insert(req.SupportTypeName);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_SupportType_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_SupportType_Update(req.TypeName, req.TypeId);
+                sp_result = db.sp_SupportType_Update(req.SupportTypeName, req.SupportTypeId);
             }
             catch (Exception ex)
             {
@@ -62,12 +62,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- DELETE------------------------------------------------
-        public ISingleResult<sp_SupportType_DeleteResult> Delete(int TypeId)
+        public ISingleResult<sp_SupportType_DeleteResult> Delete(int SupportTypeId)
         {
             ISingleResult<sp_SupportType_DeleteResult> sp_result;
             try
             {
-                sp_result = db.sp_SupportType_Delete(TypeId);
+                sp_result = db.sp_SupportType_Delete(SupportTypeId);
             }
             catch (Exception ex)
             {

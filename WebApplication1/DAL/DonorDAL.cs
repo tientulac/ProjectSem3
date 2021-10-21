@@ -37,7 +37,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_Donor_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_Donor_Insert(req.DonorName,req.Address,req.Email,req.Phone,req.TotalAmount,req.Status,req.TypeId,req.LocalId);
+                sp_result = db.sp_Donor_Insert(req.DonorName,req.Address,req.Email,req.Phone,req.TotalAmount,req.Status,req.SupportTypeId, req.LocalId);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_Donor_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_Donor_Update(req.DonorName, req.Address, req.Email, req.Phone, req.TotalAmount, req.Status, req.TypeId, req.LocalId,req.DonorId);
+                sp_result = db.sp_Donor_Update(req.DonorName, req.Address, req.Email, req.Phone, req.TotalAmount, req.Status, req.SupportTypeId, req.LocalId,req.DonorId);
             }
             catch (Exception ex)
             {

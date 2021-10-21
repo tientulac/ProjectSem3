@@ -24,15 +24,18 @@ namespace WebApplication1.Models.InputModel
     {
         public int ParticipantId { get; set; }
         public int CommunityId { get; set; }
+        public decimal Money { get; set; }
     }
     public class ParticipantEvent
     {
         public int ParticipantId { get; set; }
         public int EventId { get; set; }
+        public decimal Money { get; set; }
     }
     public class ParticipantPost
     {
         public int ParticipantId { get; set; }
         public int PostId { get; set; }
+        public decimal Money { get; set; }
     }
 }

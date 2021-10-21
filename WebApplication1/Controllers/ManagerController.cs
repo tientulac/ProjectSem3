@@ -86,8 +86,8 @@ namespace WebApplication1.Controllers
                                LocalName = a.LocalName,
                                Slot = a.Slot.GetValueOrDefault(),
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
+                               SupportTypeName = a.SupportTypeName,
                                Url = a.Url
                            }).ToList();
                 res.DataCom = lst;
@@ -136,10 +136,10 @@ namespace WebApplication1.Controllers
                                Slot = a.Slot.GetValueOrDefault(),
                                DesiredAmount = a.DesiredAmount.GetValueOrDefault(),
                                DonateAmount = a.DonateAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
                                LocalId = a.LocalId.GetValueOrDefault(),
                                Status = a.Status.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeName = a.SupportTypeName,
                                LocalName = a.LocalName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
                            }).ToList();
@@ -188,8 +188,10 @@ namespace WebApplication1.Controllers
                                Image = a.Image,
                                Status = a.Status.GetValueOrDefault(),
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
+                               SupportTypeName = a.SupportTypeName,
+                               PostTypeId = a.PostTypeId.GetValueOrDefault(),
+                               PostTypeName = a.PostTypeName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
                            }).ToList();
                 res.DataPost = lst;

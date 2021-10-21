@@ -39,8 +39,10 @@ namespace WebApplication1.Controllers
                                Image = a.Image,
                                Status = a.Status.GetValueOrDefault(),
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
+                               SupportTypeName = a.SupportTypeName,
+                               PostTypeId = a.PostTypeId.GetValueOrDefault(),
+                               PostTypeName = a.PostTypeName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
                            }).ToList();
                 res.Data = lst;

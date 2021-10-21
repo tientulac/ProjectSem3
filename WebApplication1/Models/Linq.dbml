@@ -5,7 +5,7 @@
       <Column Name="FundId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FundName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CommunityDonate" Member="CommunityDonates">
@@ -16,7 +16,7 @@
       <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
@@ -28,7 +28,7 @@
       <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="ToTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DonorName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
@@ -43,7 +43,7 @@
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
@@ -102,24 +102,21 @@
     <Type Name="ParticipantCommunity">
       <Column Name="ParticipantId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CommunityId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ParticipantEvent" Member="ParticipantEvents">
     <Type Name="ParticipantEvent">
       <Column Name="ParticipantId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="EventId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ParticipantPost" Member="ParticipantPosts">
     <Type Name="ParticipantPost">
       <Column Name="ParticipantId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SupportType" Member="SupportTypes">
-    <Type Name="SupportType">
-      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Post" Member="Posts">
@@ -131,7 +128,31 @@
       <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PostType" Member="PostTypes">
+    <Type Name="PostType">
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SupportType" Member="SupportTypes">
+    <Type Name="SupportType">
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserEvent" Member="UserEvents">
+    <Type Name="UserEvent">
+      <Column Name="UserEventId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeEvent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Perform" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Moment" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IPAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.sp_CharityFund_Delete" Method="sp_CharityFund_Delete">
@@ -143,7 +164,7 @@
   <Function Name="dbo.sp_CharityFund_Insert" Method="sp_CharityFund_Insert">
     <Parameter Name="FundName" Parameter="fundName" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_CharityFund_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
@@ -153,17 +174,23 @@
       <Column Name="FundId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FundName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_CharityFund_UPDATE" Method="sp_CharityFund_UPDATE">
     <Parameter Name="FundName" Parameter="fundName" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
     <Parameter Name="FundId" Parameter="fundId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_CharityFund_UPDATEResult">
       <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CommunityDonate_Delete" Method="sp_CommunityDonate_Delete">
+    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_CommunityDonate_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_CommunityDonate_Insert" Method="sp_CommunityDonate_Insert">
@@ -172,16 +199,23 @@
     <Parameter Name="Url" Parameter="url" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
     <Parameter Name="ToTalAmount" Parameter="toTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
     <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_CommunityDonate_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_CommunityDonate_Delete" Method="sp_CommunityDonate_Delete">
+  <Function Name="dbo.sp_CommunityDonate_Update" Method="sp_CommunityDonate_Update">
+    <Parameter Name="CommunityName" Parameter="communityName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Url" Parameter="url" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ToTalAmount" Parameter="toTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
     <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_CommunityDonate_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    <ElementType Name="sp_CommunityDonate_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_CommunityDonate_Load_List" Method="sp_CommunityDonate_Load_List">
@@ -192,29 +226,10 @@
       <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_CommunityDonate_Update" Method="sp_CommunityDonate_Update">
-    <Parameter Name="CommunityName" Parameter="communityName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Url" Parameter="url" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ToTalAmount" Parameter="toTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_CommunityDonate_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Donor_Delete" Method="sp_Donor_Delete">
-    <Parameter Name="DonorId" Parameter="donorId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Donor_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Donor_Insert" Method="sp_Donor_Insert">
@@ -224,10 +239,16 @@
     <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="ToTalAmount" Parameter="toTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
     <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Donor_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Donor_Delete" Method="sp_Donor_Delete">
+    <Parameter Name="DonorId" Parameter="donorId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Donor_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Donor_Load_List" Method="sp_Donor_Load_List">
@@ -238,10 +259,10 @@
       <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="ToTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DonorName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -252,17 +273,26 @@
     <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="ToTalAmount" Parameter="toTalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
     <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
     <Parameter Name="DonorId" Parameter="donorId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Donor_UpdateResult">
       <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_Event_Delete" Method="sp_Event_Delete">
-    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Event_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.sp_Event_Insert" Method="sp_Event_Insert">
+    <Parameter Name="EventName" Parameter="eventName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DesiredAmount" Parameter="desiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Event_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Event_Load_List" Method="sp_Event_Load_List">
@@ -275,54 +305,10 @@
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Event_Insert" Method="sp_Event_Insert">
-    <Parameter Name="EventName" Parameter="eventName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
-    <Parameter Name="DesiredAmount" Parameter="desiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Event_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Event_Update" Method="sp_Event_Update">
-    <Parameter Name="EventName" Parameter="eventName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
-    <Parameter Name="DesiredAmount" Parameter="desiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Event_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Local_Delete" Method="sp_Local_Delete">
-    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Local_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Local_Load_List" Method="sp_Local_Load_List">
-    <ElementType Name="sp_Local_Load_ListResult">
-      <Column Name="LocalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LocalCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -333,12 +319,11 @@
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_Local_Update" Method="sp_Local_Update">
-    <Parameter Name="LocalCode" Parameter="localCode" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="LocalName" Parameter="localName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Local_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.sp_Local_Load_List" Method="sp_Local_Load_List">
+    <ElementType Name="sp_Local_Load_ListResult">
+      <Column Name="LocalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocalCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Manager_Delete" Method="sp_Manager_Delete">
@@ -347,16 +332,40 @@
       <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_Manager_Load_List" Method="sp_Manager_Load_List">
-    <ElementType Name="sp_Manager_Load_ListResult">
-      <Column Name="ManagerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ManagerName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Function Name="dbo.sp_Event_Delete" Method="sp_Event_Delete">
+    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Event_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Local_Delete" Method="sp_Local_Delete">
+    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Local_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Event_Update" Method="sp_Event_Update">
+    <Parameter Name="EventName" Parameter="eventName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DesiredAmount" Parameter="desiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Event_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Local_Update" Method="sp_Local_Update">
+    <Parameter Name="LocalCode" Parameter="localCode" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="LocalName" Parameter="localName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="LocalId" Parameter="localId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Local_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Manager_Insert" Method="sp_Manager_Insert">
@@ -369,6 +378,18 @@
     <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Manager_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Manager_Load_List" Method="sp_Manager_Load_List">
+    <ElementType Name="sp_Manager_Load_ListResult">
+      <Column Name="ManagerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ManagerName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Manager_Update" Method="sp_Manager_Update">
@@ -384,17 +405,17 @@
       <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_ManagerCommunity_Delete" Method="sp_ManagerCommunity_Delete">
+    <Parameter Name="ManagerId" Parameter="managerId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ManagerCommunity_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.sp_ManagerCommunity_Insert" Method="sp_ManagerCommunity_Insert">
     <Parameter Name="ManagerId" Parameter="managerId" Type="System.Int32" DbType="Int" />
     <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_ManagerCommunity_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ManagerCommunity_Delete" Method="sp_ManagerCommunity_Delete">
-    <Parameter Name="ManagerId" Parameter="managerId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ManagerCommunity_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_ManagerCommunity_Load_List" Method="sp_ManagerCommunity_Load_List">
@@ -413,9 +434,9 @@
       <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -450,11 +471,18 @@
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ManagerPost_Insert" Method="sp_ManagerPost_Insert">
+    <Parameter Name="ManagerId" Parameter="managerId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ManagerPost_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_ManagerPost_Delete" Method="sp_ManagerPost_Delete">
@@ -463,10 +491,45 @@
       <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ManagerPost_Insert" Method="sp_ManagerPost_Insert">
-    <Parameter Name="ManagerId" Parameter="managerId" Type="System.Int32" DbType="Int" />
+  <Function Name="dbo.sp_Participant_Insert" Method="sp_Participant_Insert">
+    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Participant_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantCommunity_Delete" Method="sp_ParticipantCommunity_Delete">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantCommunity_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantCommunity_Insert" Method="sp_ParticipantCommunity_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <ElementType Name="sp_ParticipantCommunity_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantEvent_Insert" Method="sp_ParticipantEvent_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <ElementType Name="sp_ParticipantEvent_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantPost_Insert" Method="sp_ParticipantPost_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
     <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ManagerPost_InsertResult">
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <ElementType Name="sp_ParticipantPost_InsertResult">
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -487,26 +550,16 @@
       <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Participant_Delete" Method="sp_Participant_Delete">
     <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Participant_DeleteResult">
       <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Participant_Insert" Method="sp_Participant_Insert">
-    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Participant_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Participant_Load_List" Method="sp_Participant_Load_List">
@@ -535,101 +588,6 @@
       <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ParticipantCommunity_Delete" Method="sp_ParticipantCommunity_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantCommunity_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantEvent_Delete" Method="sp_ParticipantEvent_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantEvent_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantPost_Delete" Method="sp_ParticipantPost_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantPost_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Post_Delete" Method="sp_Post_Delete">
-    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Post_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Post_Insert" Method="sp_Post_Insert">
-    <Parameter Name="PostName" Parameter="postName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Image" Parameter="image" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Post_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Post_Load_List" Method="sp_Post_Load_List">
-    <ElementType Name="sp_Post_Load_ListResult">
-      <Column Name="PostId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PostName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Post_Update" Method="sp_Post_Update">
-    <Parameter Name="PostName" Parameter="postName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Image" Parameter="image" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
-    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Post_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_SupportType_Delete" Method="sp_SupportType_Delete">
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_SupportType_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_SupportType_Insert" Method="sp_SupportType_Insert">
-    <Parameter Name="TypeName" Parameter="typeName" Type="System.String" DbType="NVarChar(MAX)" />
-    <ElementType Name="sp_SupportType_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_SupportType_Load_List" Method="sp_SupportType_Load_List">
-    <ElementType Name="sp_SupportType_Load_ListResult">
-      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_SupportType_Update" Method="sp_SupportType_Update">
-    <Parameter Name="TypeName" Parameter="typeName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_SupportType_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantCommunity_Insert" Method="sp_ParticipantCommunity_Insert">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantCommunity_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.sp_ParticipantCommunity_Load_List" Method="sp_ParticipantCommunity_Load_List">
     <ElementType Name="sp_ParticipantCommunity_Load_ListResult">
       <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -647,19 +605,17 @@
       <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ParticipantEvent_Insert" Method="sp_ParticipantEvent_Insert">
+  <Function Name="dbo.sp_ParticipantEvent_Delete" Method="sp_ParticipantEvent_Delete">
     <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantEvent_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    <ElementType Name="sp_ParticipantEvent_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_ParticipantEvent_Load_List" Method="sp_ParticipantEvent_Load_List">
@@ -682,19 +638,17 @@
       <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ParticipantPost_Insert" Method="sp_ParticipantPost_Insert">
+  <Function Name="dbo.sp_ParticipantPost_Delete" Method="sp_ParticipantPost_Delete">
     <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantPost_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    <ElementType Name="sp_ParticipantPost_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_ParticipantPost_Load_List" Method="sp_ParticipantPost_Load_List">
@@ -715,9 +669,131 @@
       <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Post_Delete" Method="sp_Post_Delete">
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Post_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Post_Insert" Method="sp_Post_Insert">
+    <Parameter Name="PostName" Parameter="postName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Image" Parameter="image" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostTypeId" Parameter="postTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Post_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Post_Update" Method="sp_Post_Update">
+    <Parameter Name="PostName" Parameter="postName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Slot" Parameter="slot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Image" Parameter="image" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TotalAmount" Parameter="totalAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostTypeId" Parameter="postTypeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Post_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Post_Load_List" Method="sp_Post_Load_List">
+    <ElementType Name="sp_Post_Load_ListResult">
+      <Column Name="PostId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PostType_Delete" Method="sp_PostType_Delete">
+    <Parameter Name="PostTypeId" Parameter="postTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PostType_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PostType_Insert" Method="sp_PostType_Insert">
+    <Parameter Name="PostTypeName" Parameter="postTypeName" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="sp_PostType_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PostType_Load_List" Method="sp_PostType_Load_List">
+    <ElementType Name="sp_PostType_Load_ListResult">
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PostType_Update" Method="sp_PostType_Update">
+    <Parameter Name="PostTypeName" Parameter="postTypeName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="PostTypeId" Parameter="postTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PostType_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_UserEvent_Insert" Method="sp_UserEvent_Insert">
+    <Parameter Name="TypeEvent" Parameter="typeEvent" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Perform" Parameter="perform" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Content" Parameter="content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Moment" Parameter="moment" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IPAddress" Parameter="iPAddress" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="sp_UserEvent_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_UserEvent_Load_List" Method="sp_UserEvent_Load_List">
+    <ElementType Name="sp_UserEvent_Load_ListResult">
+      <Column Name="UserEventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TypeEvent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Perform" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Moment" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IPAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SupportType_Update" Method="sp_SupportType_Update">
+    <Parameter Name="SupportTypeName" Parameter="supportTypeName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_SupportType_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SupportType_Insert" Method="sp_SupportType_Insert">
+    <Parameter Name="SupportTypeName" Parameter="supportTypeName" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="sp_SupportType_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SupportType_Delete" Method="sp_SupportType_Delete">
+    <Parameter Name="SupportTypeId" Parameter="supportTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_SupportType_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SupportType_Load_List" Method="sp_SupportType_Load_List">
+    <ElementType Name="sp_SupportType_Load_ListResult">
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

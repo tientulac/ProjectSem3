@@ -15,7 +15,7 @@ namespace WebApplication1.Models.InputModel
         public int Slot { get; set; }
         public decimal DesiredAmount { get; set; }
         public decimal DonateAmount { get; set; }
-        public int TypeId { get; set; }
+        public int SupportTypeId { get; set; }
         public int LocalId { get; set; }
         public int Status { get; set; }
     }
@@ -30,10 +30,10 @@ namespace WebApplication1.Models.InputModel
         public int Slot { get; set; }
         public decimal DesiredAmount { get; set; }
         public decimal DonateAmount { get; set; }
-        public int TypeId { get; set; }
+        public int SupportTypeId { get; set; }
         public int LocalId { get; set; }
         public int Status { get; set; }
-        public string TypeName { get; set; }
+        public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public string StatusName { get; set; }
     }

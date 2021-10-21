@@ -6,23 +6,23 @@ using System.Web;
 using WebApplication1.Models;
 using WebApplication1.Models.InputModel;
 
-
 namespace WebApplication1.DAL
 {
-    public class PostDAL
+    public class PostTypeDAL
     {
         private LinqDataContext db;
-        public PostDAL()
+        public PostTypeDAL()
         {
             db = new LinqDataContext();
         }
+
         //-------------------------------- LOAD LIST------------------------------------------------
-        public ISingleResult<sp_Post_Load_ListResult> Load_List()
+        public ISingleResult<sp_PostType_Load_ListResult> Load_List()
         {
-            ISingleResult<sp_Post_Load_ListResult> sp_result;
+            ISingleResult<sp_PostType_Load_ListResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Load_List();
+                sp_result = db.sp_PostType_Load_List();
             }
             catch (Exception ex)
             {
@@ -32,12 +32,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- INSERT------------------------------------------------
-        public ISingleResult<sp_Post_InsertResult> Insert(RequestPost req)
+        public ISingleResult<sp_PostType_InsertResult> Insert(RequestPostType req)
         {
-            ISingleResult<sp_Post_InsertResult> sp_result;
+            ISingleResult<sp_PostType_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Insert(req.PostName,req.Slot,req.Content,req.Image,req.Status,req.TotalAmount,req.SupportTypeId,req.PostTypeId);
+                sp_result = db.sp_PostType_Insert(req.PostTypeName);
             }
             catch (Exception ex)
             {
@@ -47,12 +47,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- UPDATE------------------------------------------------
-        public ISingleResult<sp_Post_UpdateResult> Update(RequestPost req)
+        public ISingleResult<sp_PostType_UpdateResult> Update(RequestPostType req)
         {
-            ISingleResult<sp_Post_UpdateResult> sp_result;
+            ISingleResult<sp_PostType_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Update(req.PostName, req.Slot, req.Content, req.Image, req.Status, req.TotalAmount, req.SupportTypeId, req.PostTypeId,req.PostId);
+                sp_result = db.sp_PostType_Update(req.PostTypeName, req.PostTypeId);
             }
             catch (Exception ex)
             {
@@ -62,12 +62,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- DELETE------------------------------------------------
-        public ISingleResult<sp_Post_DeleteResult> Delete(int PostId)
+        public ISingleResult<sp_SupportType_DeleteResult> Delete(int PostTypeId)
         {
-            ISingleResult<sp_Post_DeleteResult> sp_result;
+            ISingleResult<sp_SupportType_DeleteResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Delete(PostId);
+                sp_result = db.sp_SupportType_Delete(PostTypeId);
             }
             catch (Exception ex)
             {

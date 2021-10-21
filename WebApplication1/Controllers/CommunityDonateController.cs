@@ -39,8 +39,8 @@ namespace WebApplication1.Controllers
                                LocalName = a.LocalName,
                                Slot = a.Slot.GetValueOrDefault(),
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
-                               TypeId = a.TypeId.GetValueOrDefault(),
-                               TypeName = a.TypeName,
+                               SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
+                               SupportTypeName = a.SupportTypeName,
                                Url = a.Url
                            }).ToList();
                 res.Data = lst;
