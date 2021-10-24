@@ -193,6 +193,7 @@
     <Compile Include="Models\InputModel\RequestEvent.cs" />
     <Compile Include="Models\InputModel\RequestLocal.cs" />
     <Compile Include="Models\InputModel\RequestManager.cs" />
+    <Compile Include="Models\InputModel\RequestMoneyType.cs" />
     <Compile Include="Models\InputModel\RequestParticipant.cs" />
     <Compile Include="Models\InputModel\RequestPost.cs" />
     <Compile Include="Models\InputModel\RequestPostType.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\OutputModel\ResponseEvent.cs" />
     <Compile Include="Models\OutputModel\ResponseLocal.cs" />
     <Compile Include="Models\OutputModel\ResponseManager.cs" />
+    <Compile Include="Models\OutputModel\ResponseMoneyType.cs" />
     <Compile Include="Models\OutputModel\ResponseParticipant.cs" />
     <Compile Include="Models\OutputModel\ResponsePost.cs" />
     <Compile Include="Models\OutputModel\ResponseSupportType.cs" />
@@ -276,6 +278,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="SQL_Script\NGO_website_Documation.pdf" />
+    <Content Include="SQL_Script\NGO_ClassDiagram.mdj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

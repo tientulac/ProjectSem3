@@ -155,6 +155,13 @@
       <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.MoneyType" Member="MoneyTypes">
+    <Type Name="MoneyType">
+      <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_CharityFund_Delete" Method="sp_CharityFund_Delete">
     <Parameter Name="FundId" Parameter="fundId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_CharityFund_DeleteResult">
@@ -503,36 +510,6 @@
       <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ParticipantCommunity_Delete" Method="sp_ParticipantCommunity_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantCommunity_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantCommunity_Insert" Method="sp_ParticipantCommunity_Insert">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantCommunity_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantEvent_Insert" Method="sp_ParticipantEvent_Insert">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantEvent_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantPost_Insert" Method="sp_ParticipantPost_Insert">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="sp_ParticipantPost_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.sp_ManagerPost_Load_List" Method="sp_ManagerPost_Load_List">
     <ElementType Name="sp_ManagerPost_Load_ListResult">
       <Column Name="ManagerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -586,94 +563,6 @@
     <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_Participant_UpdateResult">
       <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantCommunity_Load_List" Method="sp_ParticipantCommunity_Load_List">
-    <ElementType Name="sp_ParticipantCommunity_Load_ListResult">
-      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CommunityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CommunityName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantEvent_Delete" Method="sp_ParticipantEvent_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantEvent_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantEvent_Load_List" Method="sp_ParticipantEvent_Load_List">
-    <ElementType Name="sp_ParticipantEvent_Load_ListResult">
-      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DonateByParticipant" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EventName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="FromDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ToDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantPost_Delete" Method="sp_ParticipantPost_Delete">
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_ParticipantPost_DeleteResult">
-      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_ParticipantPost_Load_List" Method="sp_ParticipantPost_Load_List">
-    <ElementType Name="sp_ParticipantPost_Load_ListResult">
-      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PostId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PostName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Post_Delete" Method="sp_Post_Delete">
@@ -794,6 +683,164 @@
     <ElementType Name="sp_SupportType_Load_ListResult">
       <Column Name="SupportTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MoneyType_Delete" Method="sp_MoneyType_Delete">
+    <Parameter Name="MoneyTypeId" Parameter="moneyTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_MoneyType_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MoneyType_Insert" Method="sp_MoneyType_Insert">
+    <Parameter Name="MoneyTypeName" Parameter="moneyTypeName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Ratio" Parameter="ratio" Type="System.Double" DbType="Float" />
+    <ElementType Name="sp_MoneyType_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MoneyType_Load_List" Method="sp_MoneyType_Load_List">
+    <ElementType Name="sp_MoneyType_Load_ListResult">
+      <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MoneyType_Update" Method="sp_MoneyType_Update">
+    <Parameter Name="MoneyTypeName" Parameter="moneyTypeName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Ratio" Parameter="ratio" Type="System.Double" DbType="Float" />
+    <Parameter Name="MoneyTypeId" Parameter="moneyTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_MoneyType_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantCommunity_Delete" Method="sp_ParticipantCommunity_Delete">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantCommunity_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantCommunity_Insert" Method="sp_ParticipantCommunity_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CommunityId" Parameter="communityId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="MoneyTypeId" Parameter="moneyTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantCommunity_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantCommunity_Load_List" Method="sp_ParticipantCommunity_Load_List">
+    <ElementType Name="sp_ParticipantCommunity_Load_ListResult">
+      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CommunityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CommunityName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantEvent_Delete" Method="sp_ParticipantEvent_Delete">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantEvent_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantEvent_Insert" Method="sp_ParticipantEvent_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="MoneyTypeId" Parameter="moneyTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantEvent_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantEvent_Load_List" Method="sp_ParticipantEvent_Load_List">
+    <ElementType Name="sp_ParticipantEvent_Load_ListResult">
+      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DonateByParticipant" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ToDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DesiredAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantPost_Delete" Method="sp_ParticipantPost_Delete">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantPost_DeleteResult">
+      <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantPost_Insert" Method="sp_ParticipantPost_Insert">
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Money" Parameter="money" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="MoneyTypeId" Parameter="moneyTypeId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_ParticipantPost_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ParticipantPost_Load_List" Method="sp_ParticipantPost_Load_List">
+    <ElementType Name="sp_ParticipantPost_Load_ListResult">
+      <Column Name="ParticipantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParticipantName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Slot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SupportTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PostTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupportTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PostTypeName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

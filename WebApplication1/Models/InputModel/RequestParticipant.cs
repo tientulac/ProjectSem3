@@ -21,6 +21,7 @@ namespace WebApplication1.Models.InputModel
         public int EventId { get; set; }
         public int PostId { get; set; }
         public decimal Money { get; set; }
+        public int MoneyTypeId { get; set; }
         public List<int> List_com { get; set; }
         public List<int> List_event { get; set; }
         public List<int> List_post { get; set; }
@@ -49,6 +50,9 @@ namespace WebApplication1.Models.InputModel
         public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public decimal Money { get; set; }
+        public int MoneyTypeId { get; set; }
+        public string MoneyTypeName { get; set; }
+        public double Ratio { get; set; }
     }
 
     public class RequestParticipantEventDTO {
@@ -77,6 +81,9 @@ namespace WebApplication1.Models.InputModel
         public string StatusName { get; set; }
         public decimal DonateByParticipant { get; set; }
         public decimal Money { get; set; }
+        public int MoneyTypeId { get; set; }
+        public string MoneyTypeName { get; set; }
+        public double Ratio { get; set; }
     }
 
     public class RequestParticipantPostDTO
@@ -104,5 +111,8 @@ namespace WebApplication1.Models.InputModel
         public decimal Money { get; set; }
         public int PostTypeId { get; set; }
         public string PostTypeName { get; set; }
+        public int MoneyTypeId { get; set; }
+        public string MoneyTypeName { get; set; }
+        public double Ratio { get; set; }
     }
 }

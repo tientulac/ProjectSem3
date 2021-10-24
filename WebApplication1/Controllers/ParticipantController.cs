@@ -91,7 +91,10 @@ namespace WebApplication1.Controllers
                                SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
                                SupportTypeName = a.SupportTypeName,
                                Url = a.Url,
-                               Money = a.Money.GetValueOrDefault()
+                               Money = a.Money.GetValueOrDefault(),
+                               MoneyTypeId = a.MoneyTypeId,
+                               MoneyTypeName = a.MoneyTypeName,
+                               Ratio = a.Ratio.GetValueOrDefault()
                            }).ToList();
                 res.DataCom = lst;
                 res.Status = StatusID.Success;
@@ -146,7 +149,10 @@ namespace WebApplication1.Controllers
                                LocalName = a.LocalName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
                                DonateByParticipant = a.DonateByParticipant.GetValueOrDefault(),
-                               Money = a.Money.GetValueOrDefault()
+                               Money = a.Money.GetValueOrDefault(),
+                               MoneyTypeId = a.MoneyTypeId,
+                               MoneyTypeName = a.MoneyTypeName,
+                               Ratio = a.Ratio.GetValueOrDefault()
                            }).ToList();
                 res.DataEvent = lst;
                 res.Status = StatusID.Success;
@@ -199,7 +205,10 @@ namespace WebApplication1.Controllers
                                PostTypeName = a.PostTypeName,
                                StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
                                DonateAmount = a.DonateAmount.GetValueOrDefault(),
-                               Money = a.Money.GetValueOrDefault()
+                               Money = a.Money.GetValueOrDefault(),
+                               MoneyTypeId = a.MoneyTypeId,
+                               MoneyTypeName = a.MoneyTypeName,
+                               Ratio = a.Ratio.GetValueOrDefault()
                            }).ToList();
                 res.DataPost = lst;
                 res.Status = StatusID.Success;
@@ -243,7 +252,7 @@ namespace WebApplication1.Controllers
                     {
                         foreach (var com in req.List_com)
                         {
-                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money);
+                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money, req.MoneyTypeId);
                             if (rs_com.Any())
                             {
                                 success_com++;
@@ -256,7 +265,7 @@ namespace WebApplication1.Controllers
                     }
                     if (req.List_event.Count() > 0)
                     {
-                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money);
+                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money, req.MoneyTypeId);
                         if (rs_event.Any())
                         {
                             success_event++;
@@ -268,7 +277,7 @@ namespace WebApplication1.Controllers
                     }
                     if (req.List_post.Count() > 0)
                     {
-                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money);
+                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money, req.MoneyTypeId);
                         if (rs_post.Any())
                         {
                             success_post++;
@@ -325,7 +334,7 @@ namespace WebApplication1.Controllers
                         {
                             foreach (var com in req.List_com)
                             {
-                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money);
+                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money, req.MoneyTypeId);
                                 if (rs_com.Any())
                                 {
                                     success_com++;
@@ -338,7 +347,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_event.Count() > 0)
                         {
-                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money);
+                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money, req.MoneyTypeId);
                             if (rs_event.Any())
                             {
                                 success_event++;
@@ -350,7 +359,7 @@ namespace WebApplication1.Controllers
                         }
                         if (req.List_post.Count() > 0)
                         {
-                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money);
+                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money, req.MoneyTypeId);
                             if (rs_post.Any())
                             {
                                 success_post++;

@@ -63,6 +63,9 @@ namespace WebApplication1.Models
     partial void InsertUserEvent(UserEvent instance);
     partial void UpdateUserEvent(UserEvent instance);
     partial void DeleteUserEvent(UserEvent instance);
+    partial void InsertMoneyType(MoneyType instance);
+    partial void UpdateMoneyType(MoneyType instance);
+    partial void DeleteMoneyType(MoneyType instance);
     #endregion
 		
 		public LinqDataContext() : 
@@ -228,6 +231,14 @@ namespace WebApplication1.Models
 			get
 			{
 				return this.GetTable<UserEvent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MoneyType> MoneyTypes
+		{
+			get
+			{
+				return this.GetTable<MoneyType>();
 			}
 		}
 		
@@ -462,34 +473,6 @@ namespace WebApplication1.Models
 			return ((ISingleResult<sp_Participant_InsertResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Delete")]
-		public ISingleResult<sp_ParticipantCommunity_DeleteResult> sp_ParticipantCommunity_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
-			return ((ISingleResult<sp_ParticipantCommunity_DeleteResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Insert")]
-		public ISingleResult<sp_ParticipantCommunity_InsertResult> sp_ParticipantCommunity_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CommunityId", DbType="Int")] System.Nullable<int> communityId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, communityId, money);
-			return ((ISingleResult<sp_ParticipantCommunity_InsertResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Insert")]
-		public ISingleResult<sp_ParticipantEvent_InsertResult> sp_ParticipantEvent_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EventId", DbType="Int")] System.Nullable<int> eventId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, eventId, money);
-			return ((ISingleResult<sp_ParticipantEvent_InsertResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Insert")]
-		public ISingleResult<sp_ParticipantPost_InsertResult> sp_ParticipantPost_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PostId", DbType="Int")] System.Nullable<int> postId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, postId, money);
-			return ((ISingleResult<sp_ParticipantPost_InsertResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ManagerPost_Load_List")]
 		public ISingleResult<sp_ManagerPost_Load_ListResult> sp_ManagerPost_Load_List()
 		{
@@ -516,41 +499,6 @@ namespace WebApplication1.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantName, address, email, phone, gender, birth, userId, participantId);
 			return ((ISingleResult<sp_Participant_UpdateResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Load_List")]
-		public ISingleResult<sp_ParticipantCommunity_Load_ListResult> sp_ParticipantCommunity_Load_List()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_ParticipantCommunity_Load_ListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Delete")]
-		public ISingleResult<sp_ParticipantEvent_DeleteResult> sp_ParticipantEvent_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
-			return ((ISingleResult<sp_ParticipantEvent_DeleteResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Load_List")]
-		public ISingleResult<sp_ParticipantEvent_Load_ListResult> sp_ParticipantEvent_Load_List()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_ParticipantEvent_Load_ListResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Delete")]
-		public ISingleResult<sp_ParticipantPost_DeleteResult> sp_ParticipantPost_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
-			return ((ISingleResult<sp_ParticipantPost_DeleteResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Load_List")]
-		public ISingleResult<sp_ParticipantPost_Load_ListResult> sp_ParticipantPost_Load_List()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_ParticipantPost_Load_ListResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Post_Delete")]
@@ -649,6 +597,97 @@ namespace WebApplication1.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<sp_SupportType_Load_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_MoneyType_Delete")]
+		public ISingleResult<sp_MoneyType_DeleteResult> sp_MoneyType_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeId", DbType="Int")] System.Nullable<int> moneyTypeId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moneyTypeId);
+			return ((ISingleResult<sp_MoneyType_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_MoneyType_Insert")]
+		public ISingleResult<sp_MoneyType_InsertResult> sp_MoneyType_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeName", DbType="NVarChar(50)")] string moneyTypeName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ratio", DbType="Float")] System.Nullable<double> ratio)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moneyTypeName, ratio);
+			return ((ISingleResult<sp_MoneyType_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_MoneyType_Load_List")]
+		public ISingleResult<sp_MoneyType_Load_ListResult> sp_MoneyType_Load_List()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<sp_MoneyType_Load_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_MoneyType_Update")]
+		public ISingleResult<sp_MoneyType_UpdateResult> sp_MoneyType_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeName", DbType="NVarChar(50)")] string moneyTypeName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ratio", DbType="Float")] System.Nullable<double> ratio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeId", DbType="Int")] System.Nullable<int> moneyTypeId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), moneyTypeName, ratio, moneyTypeId);
+			return ((ISingleResult<sp_MoneyType_UpdateResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Delete")]
+		public ISingleResult<sp_ParticipantCommunity_DeleteResult> sp_ParticipantCommunity_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
+			return ((ISingleResult<sp_ParticipantCommunity_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Insert")]
+		public ISingleResult<sp_ParticipantCommunity_InsertResult> sp_ParticipantCommunity_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CommunityId", DbType="Int")] System.Nullable<int> communityId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeId", DbType="Int")] System.Nullable<int> moneyTypeId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, communityId, money, moneyTypeId);
+			return ((ISingleResult<sp_ParticipantCommunity_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantCommunity_Load_List")]
+		public ISingleResult<sp_ParticipantCommunity_Load_ListResult> sp_ParticipantCommunity_Load_List()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<sp_ParticipantCommunity_Load_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Delete")]
+		public ISingleResult<sp_ParticipantEvent_DeleteResult> sp_ParticipantEvent_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
+			return ((ISingleResult<sp_ParticipantEvent_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Insert")]
+		public ISingleResult<sp_ParticipantEvent_InsertResult> sp_ParticipantEvent_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EventId", DbType="Int")] System.Nullable<int> eventId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeId", DbType="Int")] System.Nullable<int> moneyTypeId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, eventId, money, moneyTypeId);
+			return ((ISingleResult<sp_ParticipantEvent_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantEvent_Load_List")]
+		public ISingleResult<sp_ParticipantEvent_Load_ListResult> sp_ParticipantEvent_Load_List()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<sp_ParticipantEvent_Load_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Delete")]
+		public ISingleResult<sp_ParticipantPost_DeleteResult> sp_ParticipantPost_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId);
+			return ((ISingleResult<sp_ParticipantPost_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Insert")]
+		public ISingleResult<sp_ParticipantPost_InsertResult> sp_ParticipantPost_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParticipantId", DbType="Int")] System.Nullable<int> participantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PostId", DbType="Int")] System.Nullable<int> postId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Money", DbType="Decimal(18,0)")] System.Nullable<decimal> money, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MoneyTypeId", DbType="Int")] System.Nullable<int> moneyTypeId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantId, postId, money, moneyTypeId);
+			return ((ISingleResult<sp_ParticipantPost_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ParticipantPost_Load_List")]
+		public ISingleResult<sp_ParticipantPost_Load_ListResult> sp_ParticipantPost_Load_List()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<sp_ParticipantPost_Load_ListResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -3122,6 +3161,116 @@ namespace WebApplication1.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MoneyType")]
+	public partial class MoneyType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MoneyTypeId;
+		
+		private string _MoneyTypeName;
+		
+		private System.Nullable<double> _Ratio;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMoneyTypeIdChanging(int value);
+    partial void OnMoneyTypeIdChanged();
+    partial void OnMoneyTypeNameChanging(string value);
+    partial void OnMoneyTypeNameChanged();
+    partial void OnRatioChanging(System.Nullable<double> value);
+    partial void OnRatioChanged();
+    #endregion
+		
+		public MoneyType()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MoneyTypeId
+		{
+			get
+			{
+				return this._MoneyTypeId;
+			}
+			set
+			{
+				if ((this._MoneyTypeId != value))
+				{
+					this.OnMoneyTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._MoneyTypeId = value;
+					this.SendPropertyChanged("MoneyTypeId");
+					this.OnMoneyTypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeName", DbType="NVarChar(50)")]
+		public string MoneyTypeName
+		{
+			get
+			{
+				return this._MoneyTypeName;
+			}
+			set
+			{
+				if ((this._MoneyTypeName != value))
+				{
+					this.OnMoneyTypeNameChanging(value);
+					this.SendPropertyChanging();
+					this._MoneyTypeName = value;
+					this.SendPropertyChanged("MoneyTypeName");
+					this.OnMoneyTypeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ratio", DbType="Float")]
+		public System.Nullable<double> Ratio
+		{
+			get
+			{
+				return this._Ratio;
+			}
+			set
+			{
+				if ((this._Ratio != value))
+				{
+					this.OnRatioChanging(value);
+					this.SendPropertyChanging();
+					this._Ratio = value;
+					this.SendPropertyChanged("Ratio");
+					this.OnRatioChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	public partial class sp_CharityFund_DeleteResult
 	{
 		
@@ -5438,110 +5587,6 @@ namespace WebApplication1.Models
 		}
 	}
 	
-	public partial class sp_ParticipantCommunity_DeleteResult
-	{
-		
-		private int _Deleted;
-		
-		public sp_ParticipantCommunity_DeleteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
-		public int Deleted
-		{
-			get
-			{
-				return this._Deleted;
-			}
-			set
-			{
-				if ((this._Deleted != value))
-				{
-					this._Deleted = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantCommunity_InsertResult
-	{
-		
-		private System.Nullable<decimal> _Identity;
-		
-		public sp_ParticipantCommunity_InsertResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> Identity
-		{
-			get
-			{
-				return this._Identity;
-			}
-			set
-			{
-				if ((this._Identity != value))
-				{
-					this._Identity = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantEvent_InsertResult
-	{
-		
-		private System.Nullable<decimal> _Identity;
-		
-		public sp_ParticipantEvent_InsertResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> Identity
-		{
-			get
-			{
-				return this._Identity;
-			}
-			set
-			{
-				if ((this._Identity != value))
-				{
-					this._Identity = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantPost_InsertResult
-	{
-		
-		private System.Nullable<decimal> _Identity;
-		
-		public sp_ParticipantPost_InsertResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> Identity
-		{
-			get
-			{
-				return this._Identity;
-			}
-			set
-			{
-				if ((this._Identity != value))
-				{
-					this._Identity = value;
-				}
-			}
-		}
-	}
-	
 	public partial class sp_ManagerPost_Load_ListResult
 	{
 		
@@ -6109,1234 +6154,6 @@ namespace WebApplication1.Models
 				if ((this._Updated != value))
 				{
 					this._Updated = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantCommunity_Load_ListResult
-	{
-		
-		private int _ParticipantId;
-		
-		private string _ParticipantName;
-		
-		private string _Address;
-		
-		private string _Email;
-		
-		private string _Phone;
-		
-		private System.Nullable<bool> _Gender;
-		
-		private System.Nullable<decimal> _DonateAmount;
-		
-		private System.Nullable<System.DateTime> _Birth;
-		
-		private System.Nullable<int> _UserId;
-		
-		private int _CommunityId;
-		
-		private string _CommunityName;
-		
-		private string _Description;
-		
-		private string _Url;
-		
-		private System.Nullable<int> _Slot;
-		
-		private System.Nullable<decimal> _TotalAmount;
-		
-		private System.Nullable<int> _SupportTypeId;
-		
-		private System.Nullable<int> _LocalId;
-		
-		private string _SupportTypeName;
-		
-		private string _LocalName;
-		
-		private System.Nullable<decimal> _Money;
-		
-		public sp_ParticipantCommunity_Load_ListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
-		public int ParticipantId
-		{
-			get
-			{
-				return this._ParticipantId;
-			}
-			set
-			{
-				if ((this._ParticipantId != value))
-				{
-					this._ParticipantId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
-		public string ParticipantName
-		{
-			get
-			{
-				return this._ParticipantName;
-			}
-			set
-			{
-				if ((this._ParticipantName != value))
-				{
-					this._ParticipantName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this._Address = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this._Phone = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
-		public System.Nullable<bool> Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this._Gender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonateAmount
-		{
-			get
-			{
-				return this._DonateAmount;
-			}
-			set
-			{
-				if ((this._DonateAmount != value))
-				{
-					this._DonateAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
-		public System.Nullable<System.DateTime> Birth
-		{
-			get
-			{
-				return this._Birth;
-			}
-			set
-			{
-				if ((this._Birth != value))
-				{
-					this._Birth = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
-		public System.Nullable<int> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommunityId", DbType="Int NOT NULL")]
-		public int CommunityId
-		{
-			get
-			{
-				return this._CommunityId;
-			}
-			set
-			{
-				if ((this._CommunityId != value))
-				{
-					this._CommunityId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommunityName", DbType="NVarChar(MAX)")]
-		public string CommunityName
-		{
-			get
-			{
-				return this._CommunityName;
-			}
-			set
-			{
-				if ((this._CommunityName != value))
-				{
-					this._CommunityName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="NVarChar(MAX)")]
-		public string Url
-		{
-			get
-			{
-				return this._Url;
-			}
-			set
-			{
-				if ((this._Url != value))
-				{
-					this._Url = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
-		public System.Nullable<int> Slot
-		{
-			get
-			{
-				return this._Slot;
-			}
-			set
-			{
-				if ((this._Slot != value))
-				{
-					this._Slot = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TotalAmount
-		{
-			get
-			{
-				return this._TotalAmount;
-			}
-			set
-			{
-				if ((this._TotalAmount != value))
-				{
-					this._TotalAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
-		public System.Nullable<int> SupportTypeId
-		{
-			get
-			{
-				return this._SupportTypeId;
-			}
-			set
-			{
-				if ((this._SupportTypeId != value))
-				{
-					this._SupportTypeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalId", DbType="Int")]
-		public System.Nullable<int> LocalId
-		{
-			get
-			{
-				return this._LocalId;
-			}
-			set
-			{
-				if ((this._LocalId != value))
-				{
-					this._LocalId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
-		public string SupportTypeName
-		{
-			get
-			{
-				return this._SupportTypeName;
-			}
-			set
-			{
-				if ((this._SupportTypeName != value))
-				{
-					this._SupportTypeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalName", DbType="NVarChar(MAX)")]
-		public string LocalName
-		{
-			get
-			{
-				return this._LocalName;
-			}
-			set
-			{
-				if ((this._LocalName != value))
-				{
-					this._LocalName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Money
-		{
-			get
-			{
-				return this._Money;
-			}
-			set
-			{
-				if ((this._Money != value))
-				{
-					this._Money = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantEvent_DeleteResult
-	{
-		
-		private int _Deleted;
-		
-		public sp_ParticipantEvent_DeleteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
-		public int Deleted
-		{
-			get
-			{
-				return this._Deleted;
-			}
-			set
-			{
-				if ((this._Deleted != value))
-				{
-					this._Deleted = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantEvent_Load_ListResult
-	{
-		
-		private int _ParticipantId;
-		
-		private string _ParticipantName;
-		
-		private string _Address;
-		
-		private string _Email;
-		
-		private string _Phone;
-		
-		private System.Nullable<bool> _Gender;
-		
-		private System.Nullable<decimal> _DonateByParticipant;
-		
-		private System.Nullable<System.DateTime> _Birth;
-		
-		private System.Nullable<int> _UserId;
-		
-		private System.Nullable<decimal> _Money;
-		
-		private int _EventId;
-		
-		private string _EventName;
-		
-		private System.Nullable<System.DateTime> _FromDate;
-		
-		private System.Nullable<System.DateTime> _ToDate;
-		
-		private string _Content;
-		
-		private System.Nullable<int> _Slot;
-		
-		private System.Nullable<decimal> _DesiredAmount;
-		
-		private System.Nullable<decimal> _DonateAmount;
-		
-		private System.Nullable<int> _SupportTypeId;
-		
-		private System.Nullable<int> _LocalId;
-		
-		private System.Nullable<int> _Status;
-		
-		private string _SupportTypeName;
-		
-		private string _LocalName;
-		
-		public sp_ParticipantEvent_Load_ListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
-		public int ParticipantId
-		{
-			get
-			{
-				return this._ParticipantId;
-			}
-			set
-			{
-				if ((this._ParticipantId != value))
-				{
-					this._ParticipantId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
-		public string ParticipantName
-		{
-			get
-			{
-				return this._ParticipantName;
-			}
-			set
-			{
-				if ((this._ParticipantName != value))
-				{
-					this._ParticipantName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this._Address = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this._Phone = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
-		public System.Nullable<bool> Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this._Gender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateByParticipant", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonateByParticipant
-		{
-			get
-			{
-				return this._DonateByParticipant;
-			}
-			set
-			{
-				if ((this._DonateByParticipant != value))
-				{
-					this._DonateByParticipant = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
-		public System.Nullable<System.DateTime> Birth
-		{
-			get
-			{
-				return this._Birth;
-			}
-			set
-			{
-				if ((this._Birth != value))
-				{
-					this._Birth = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
-		public System.Nullable<int> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Money
-		{
-			get
-			{
-				return this._Money;
-			}
-			set
-			{
-				if ((this._Money != value))
-				{
-					this._Money = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
-		public int EventId
-		{
-			get
-			{
-				return this._EventId;
-			}
-			set
-			{
-				if ((this._EventId != value))
-				{
-					this._EventId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventName", DbType="NVarChar(MAX)")]
-		public string EventName
-		{
-			get
-			{
-				return this._EventName;
-			}
-			set
-			{
-				if ((this._EventName != value))
-				{
-					this._EventName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FromDate
-		{
-			get
-			{
-				return this._FromDate;
-			}
-			set
-			{
-				if ((this._FromDate != value))
-				{
-					this._FromDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ToDate
-		{
-			get
-			{
-				return this._ToDate;
-			}
-			set
-			{
-				if ((this._ToDate != value))
-				{
-					this._ToDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
-		public string Content
-		{
-			get
-			{
-				return this._Content;
-			}
-			set
-			{
-				if ((this._Content != value))
-				{
-					this._Content = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
-		public System.Nullable<int> Slot
-		{
-			get
-			{
-				return this._Slot;
-			}
-			set
-			{
-				if ((this._Slot != value))
-				{
-					this._Slot = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesiredAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DesiredAmount
-		{
-			get
-			{
-				return this._DesiredAmount;
-			}
-			set
-			{
-				if ((this._DesiredAmount != value))
-				{
-					this._DesiredAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonateAmount
-		{
-			get
-			{
-				return this._DonateAmount;
-			}
-			set
-			{
-				if ((this._DonateAmount != value))
-				{
-					this._DonateAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
-		public System.Nullable<int> SupportTypeId
-		{
-			get
-			{
-				return this._SupportTypeId;
-			}
-			set
-			{
-				if ((this._SupportTypeId != value))
-				{
-					this._SupportTypeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalId", DbType="Int")]
-		public System.Nullable<int> LocalId
-		{
-			get
-			{
-				return this._LocalId;
-			}
-			set
-			{
-				if ((this._LocalId != value))
-				{
-					this._LocalId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
-		public System.Nullable<int> Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
-		public string SupportTypeName
-		{
-			get
-			{
-				return this._SupportTypeName;
-			}
-			set
-			{
-				if ((this._SupportTypeName != value))
-				{
-					this._SupportTypeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalName", DbType="NVarChar(MAX)")]
-		public string LocalName
-		{
-			get
-			{
-				return this._LocalName;
-			}
-			set
-			{
-				if ((this._LocalName != value))
-				{
-					this._LocalName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantPost_DeleteResult
-	{
-		
-		private int _Deleted;
-		
-		public sp_ParticipantPost_DeleteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
-		public int Deleted
-		{
-			get
-			{
-				return this._Deleted;
-			}
-			set
-			{
-				if ((this._Deleted != value))
-				{
-					this._Deleted = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_ParticipantPost_Load_ListResult
-	{
-		
-		private int _ParticipantId;
-		
-		private string _ParticipantName;
-		
-		private string _Address;
-		
-		private string _Email;
-		
-		private string _Phone;
-		
-		private System.Nullable<bool> _Gender;
-		
-		private System.Nullable<decimal> _DonateAmount;
-		
-		private System.Nullable<System.DateTime> _Birth;
-		
-		private System.Nullable<int> _UserId;
-		
-		private int _PostId;
-		
-		private string _PostName;
-		
-		private System.Nullable<int> _Slot;
-		
-		private string _Content;
-		
-		private string _Image;
-		
-		private System.Nullable<int> _Status;
-		
-		private System.Nullable<decimal> _TotalAmount;
-		
-		private System.Nullable<int> _SupportTypeId;
-		
-		private System.Nullable<int> _PostTypeId;
-		
-		private string _SupportTypeName;
-		
-		private System.Nullable<decimal> _Money;
-		
-		private string _PostTypeName;
-		
-		public sp_ParticipantPost_Load_ListResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
-		public int ParticipantId
-		{
-			get
-			{
-				return this._ParticipantId;
-			}
-			set
-			{
-				if ((this._ParticipantId != value))
-				{
-					this._ParticipantId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
-		public string ParticipantName
-		{
-			get
-			{
-				return this._ParticipantName;
-			}
-			set
-			{
-				if ((this._ParticipantName != value))
-				{
-					this._ParticipantName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this._Address = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this._Phone = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
-		public System.Nullable<bool> Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this._Gender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> DonateAmount
-		{
-			get
-			{
-				return this._DonateAmount;
-			}
-			set
-			{
-				if ((this._DonateAmount != value))
-				{
-					this._DonateAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
-		public System.Nullable<System.DateTime> Birth
-		{
-			get
-			{
-				return this._Birth;
-			}
-			set
-			{
-				if ((this._Birth != value))
-				{
-					this._Birth = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
-		public System.Nullable<int> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostId", DbType="Int NOT NULL")]
-		public int PostId
-		{
-			get
-			{
-				return this._PostId;
-			}
-			set
-			{
-				if ((this._PostId != value))
-				{
-					this._PostId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostName", DbType="NVarChar(MAX)")]
-		public string PostName
-		{
-			get
-			{
-				return this._PostName;
-			}
-			set
-			{
-				if ((this._PostName != value))
-				{
-					this._PostName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
-		public System.Nullable<int> Slot
-		{
-			get
-			{
-				return this._Slot;
-			}
-			set
-			{
-				if ((this._Slot != value))
-				{
-					this._Slot = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
-		public string Content
-		{
-			get
-			{
-				return this._Content;
-			}
-			set
-			{
-				if ((this._Content != value))
-				{
-					this._Content = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(MAX)")]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this._Image = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
-		public System.Nullable<int> Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TotalAmount
-		{
-			get
-			{
-				return this._TotalAmount;
-			}
-			set
-			{
-				if ((this._TotalAmount != value))
-				{
-					this._TotalAmount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
-		public System.Nullable<int> SupportTypeId
-		{
-			get
-			{
-				return this._SupportTypeId;
-			}
-			set
-			{
-				if ((this._SupportTypeId != value))
-				{
-					this._SupportTypeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostTypeId", DbType="Int")]
-		public System.Nullable<int> PostTypeId
-		{
-			get
-			{
-				return this._PostTypeId;
-			}
-			set
-			{
-				if ((this._PostTypeId != value))
-				{
-					this._PostTypeId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
-		public string SupportTypeName
-		{
-			get
-			{
-				return this._SupportTypeName;
-			}
-			set
-			{
-				if ((this._SupportTypeName != value))
-				{
-					this._SupportTypeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Money
-		{
-			get
-			{
-				return this._Money;
-			}
-			set
-			{
-				if ((this._Money != value))
-				{
-					this._Money = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostTypeName", DbType="NVarChar(MAX)")]
-		public string PostTypeName
-		{
-			get
-			{
-				return this._PostTypeName;
-			}
-			set
-			{
-				if ((this._PostTypeName != value))
-				{
-					this._PostTypeName = value;
 				}
 			}
 		}
@@ -8025,6 +6842,1640 @@ namespace WebApplication1.Models
 				if ((this._SupportTypeName != value))
 				{
 					this._SupportTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_MoneyType_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_MoneyType_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_MoneyType_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_MoneyType_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_MoneyType_Load_ListResult
+	{
+		
+		private int _MoneyTypeId;
+		
+		private string _MoneyTypeName;
+		
+		private System.Nullable<double> _Ratio;
+		
+		public sp_MoneyType_Load_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeId", DbType="Int NOT NULL")]
+		public int MoneyTypeId
+		{
+			get
+			{
+				return this._MoneyTypeId;
+			}
+			set
+			{
+				if ((this._MoneyTypeId != value))
+				{
+					this._MoneyTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeName", DbType="NVarChar(50)")]
+		public string MoneyTypeName
+		{
+			get
+			{
+				return this._MoneyTypeName;
+			}
+			set
+			{
+				if ((this._MoneyTypeName != value))
+				{
+					this._MoneyTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ratio", DbType="Float")]
+		public System.Nullable<double> Ratio
+		{
+			get
+			{
+				return this._Ratio;
+			}
+			set
+			{
+				if ((this._Ratio != value))
+				{
+					this._Ratio = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_MoneyType_UpdateResult
+	{
+		
+		private int _Updated;
+		
+		public sp_MoneyType_UpdateResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Updated", DbType="Int NOT NULL")]
+		public int Updated
+		{
+			get
+			{
+				return this._Updated;
+			}
+			set
+			{
+				if ((this._Updated != value))
+				{
+					this._Updated = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantCommunity_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_ParticipantCommunity_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantCommunity_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_ParticipantCommunity_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantCommunity_Load_ListResult
+	{
+		
+		private int _ParticipantId;
+		
+		private string _ParticipantName;
+		
+		private string _Address;
+		
+		private string _Email;
+		
+		private string _Phone;
+		
+		private System.Nullable<bool> _Gender;
+		
+		private System.Nullable<decimal> _DonateAmount;
+		
+		private System.Nullable<System.DateTime> _Birth;
+		
+		private System.Nullable<int> _UserId;
+		
+		private int _CommunityId;
+		
+		private string _CommunityName;
+		
+		private string _Description;
+		
+		private string _Url;
+		
+		private System.Nullable<int> _Slot;
+		
+		private System.Nullable<decimal> _TotalAmount;
+		
+		private System.Nullable<int> _SupportTypeId;
+		
+		private System.Nullable<int> _LocalId;
+		
+		private string _SupportTypeName;
+		
+		private string _LocalName;
+		
+		private System.Nullable<decimal> _Money;
+		
+		private int _MoneyTypeId;
+		
+		private string _MoneyTypeName;
+		
+		private System.Nullable<double> _Ratio;
+		
+		public sp_ParticipantCommunity_Load_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
+		public int ParticipantId
+		{
+			get
+			{
+				return this._ParticipantId;
+			}
+			set
+			{
+				if ((this._ParticipantId != value))
+				{
+					this._ParticipantId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
+		public string ParticipantName
+		{
+			get
+			{
+				return this._ParticipantName;
+			}
+			set
+			{
+				if ((this._ParticipantName != value))
+				{
+					this._ParticipantName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this._Phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
+		public System.Nullable<bool> Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DonateAmount
+		{
+			get
+			{
+				return this._DonateAmount;
+			}
+			set
+			{
+				if ((this._DonateAmount != value))
+				{
+					this._DonateAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
+		public System.Nullable<System.DateTime> Birth
+		{
+			get
+			{
+				return this._Birth;
+			}
+			set
+			{
+				if ((this._Birth != value))
+				{
+					this._Birth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommunityId", DbType="Int NOT NULL")]
+		public int CommunityId
+		{
+			get
+			{
+				return this._CommunityId;
+			}
+			set
+			{
+				if ((this._CommunityId != value))
+				{
+					this._CommunityId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommunityName", DbType="NVarChar(MAX)")]
+		public string CommunityName
+		{
+			get
+			{
+				return this._CommunityName;
+			}
+			set
+			{
+				if ((this._CommunityName != value))
+				{
+					this._CommunityName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="NVarChar(MAX)")]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this._Url = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
+		public System.Nullable<int> Slot
+		{
+			get
+			{
+				return this._Slot;
+			}
+			set
+			{
+				if ((this._Slot != value))
+				{
+					this._Slot = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this._TotalAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
+		public System.Nullable<int> SupportTypeId
+		{
+			get
+			{
+				return this._SupportTypeId;
+			}
+			set
+			{
+				if ((this._SupportTypeId != value))
+				{
+					this._SupportTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalId", DbType="Int")]
+		public System.Nullable<int> LocalId
+		{
+			get
+			{
+				return this._LocalId;
+			}
+			set
+			{
+				if ((this._LocalId != value))
+				{
+					this._LocalId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
+		public string SupportTypeName
+		{
+			get
+			{
+				return this._SupportTypeName;
+			}
+			set
+			{
+				if ((this._SupportTypeName != value))
+				{
+					this._SupportTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalName", DbType="NVarChar(MAX)")]
+		public string LocalName
+		{
+			get
+			{
+				return this._LocalName;
+			}
+			set
+			{
+				if ((this._LocalName != value))
+				{
+					this._LocalName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Money
+		{
+			get
+			{
+				return this._Money;
+			}
+			set
+			{
+				if ((this._Money != value))
+				{
+					this._Money = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeId", DbType="Int NOT NULL")]
+		public int MoneyTypeId
+		{
+			get
+			{
+				return this._MoneyTypeId;
+			}
+			set
+			{
+				if ((this._MoneyTypeId != value))
+				{
+					this._MoneyTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeName", DbType="NVarChar(50)")]
+		public string MoneyTypeName
+		{
+			get
+			{
+				return this._MoneyTypeName;
+			}
+			set
+			{
+				if ((this._MoneyTypeName != value))
+				{
+					this._MoneyTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ratio", DbType="Float")]
+		public System.Nullable<double> Ratio
+		{
+			get
+			{
+				return this._Ratio;
+			}
+			set
+			{
+				if ((this._Ratio != value))
+				{
+					this._Ratio = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantEvent_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_ParticipantEvent_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantEvent_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_ParticipantEvent_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantEvent_Load_ListResult
+	{
+		
+		private int _ParticipantId;
+		
+		private string _ParticipantName;
+		
+		private string _Address;
+		
+		private string _Email;
+		
+		private string _Phone;
+		
+		private System.Nullable<bool> _Gender;
+		
+		private System.Nullable<decimal> _DonateByParticipant;
+		
+		private System.Nullable<System.DateTime> _Birth;
+		
+		private System.Nullable<int> _UserId;
+		
+		private System.Nullable<decimal> _Money;
+		
+		private int _MoneyTypeId;
+		
+		private string _MoneyTypeName;
+		
+		private System.Nullable<double> _Ratio;
+		
+		private int _EventId;
+		
+		private string _EventName;
+		
+		private System.Nullable<System.DateTime> _FromDate;
+		
+		private System.Nullable<System.DateTime> _ToDate;
+		
+		private string _Content;
+		
+		private System.Nullable<int> _Slot;
+		
+		private System.Nullable<decimal> _DesiredAmount;
+		
+		private System.Nullable<decimal> _DonateAmount;
+		
+		private System.Nullable<int> _SupportTypeId;
+		
+		private System.Nullable<int> _LocalId;
+		
+		private System.Nullable<int> _Status;
+		
+		private string _SupportTypeName;
+		
+		private string _LocalName;
+		
+		public sp_ParticipantEvent_Load_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
+		public int ParticipantId
+		{
+			get
+			{
+				return this._ParticipantId;
+			}
+			set
+			{
+				if ((this._ParticipantId != value))
+				{
+					this._ParticipantId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
+		public string ParticipantName
+		{
+			get
+			{
+				return this._ParticipantName;
+			}
+			set
+			{
+				if ((this._ParticipantName != value))
+				{
+					this._ParticipantName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this._Phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
+		public System.Nullable<bool> Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateByParticipant", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DonateByParticipant
+		{
+			get
+			{
+				return this._DonateByParticipant;
+			}
+			set
+			{
+				if ((this._DonateByParticipant != value))
+				{
+					this._DonateByParticipant = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
+		public System.Nullable<System.DateTime> Birth
+		{
+			get
+			{
+				return this._Birth;
+			}
+			set
+			{
+				if ((this._Birth != value))
+				{
+					this._Birth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Money
+		{
+			get
+			{
+				return this._Money;
+			}
+			set
+			{
+				if ((this._Money != value))
+				{
+					this._Money = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeId", DbType="Int NOT NULL")]
+		public int MoneyTypeId
+		{
+			get
+			{
+				return this._MoneyTypeId;
+			}
+			set
+			{
+				if ((this._MoneyTypeId != value))
+				{
+					this._MoneyTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeName", DbType="NVarChar(50)")]
+		public string MoneyTypeName
+		{
+			get
+			{
+				return this._MoneyTypeName;
+			}
+			set
+			{
+				if ((this._MoneyTypeName != value))
+				{
+					this._MoneyTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ratio", DbType="Float")]
+		public System.Nullable<double> Ratio
+		{
+			get
+			{
+				return this._Ratio;
+			}
+			set
+			{
+				if ((this._Ratio != value))
+				{
+					this._Ratio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
+		public int EventId
+		{
+			get
+			{
+				return this._EventId;
+			}
+			set
+			{
+				if ((this._EventId != value))
+				{
+					this._EventId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventName", DbType="NVarChar(MAX)")]
+		public string EventName
+		{
+			get
+			{
+				return this._EventName;
+			}
+			set
+			{
+				if ((this._EventName != value))
+				{
+					this._EventName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FromDate
+		{
+			get
+			{
+				return this._FromDate;
+			}
+			set
+			{
+				if ((this._FromDate != value))
+				{
+					this._FromDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ToDate
+		{
+			get
+			{
+				return this._ToDate;
+			}
+			set
+			{
+				if ((this._ToDate != value))
+				{
+					this._ToDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
+		public System.Nullable<int> Slot
+		{
+			get
+			{
+				return this._Slot;
+			}
+			set
+			{
+				if ((this._Slot != value))
+				{
+					this._Slot = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesiredAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DesiredAmount
+		{
+			get
+			{
+				return this._DesiredAmount;
+			}
+			set
+			{
+				if ((this._DesiredAmount != value))
+				{
+					this._DesiredAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DonateAmount
+		{
+			get
+			{
+				return this._DonateAmount;
+			}
+			set
+			{
+				if ((this._DonateAmount != value))
+				{
+					this._DonateAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
+		public System.Nullable<int> SupportTypeId
+		{
+			get
+			{
+				return this._SupportTypeId;
+			}
+			set
+			{
+				if ((this._SupportTypeId != value))
+				{
+					this._SupportTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalId", DbType="Int")]
+		public System.Nullable<int> LocalId
+		{
+			get
+			{
+				return this._LocalId;
+			}
+			set
+			{
+				if ((this._LocalId != value))
+				{
+					this._LocalId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
+		public System.Nullable<int> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
+		public string SupportTypeName
+		{
+			get
+			{
+				return this._SupportTypeName;
+			}
+			set
+			{
+				if ((this._SupportTypeName != value))
+				{
+					this._SupportTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocalName", DbType="NVarChar(MAX)")]
+		public string LocalName
+		{
+			get
+			{
+				return this._LocalName;
+			}
+			set
+			{
+				if ((this._LocalName != value))
+				{
+					this._LocalName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantPost_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_ParticipantPost_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantPost_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_ParticipantPost_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ParticipantPost_Load_ListResult
+	{
+		
+		private int _ParticipantId;
+		
+		private string _ParticipantName;
+		
+		private string _Address;
+		
+		private string _Email;
+		
+		private string _Phone;
+		
+		private System.Nullable<bool> _Gender;
+		
+		private System.Nullable<decimal> _DonateAmount;
+		
+		private System.Nullable<System.DateTime> _Birth;
+		
+		private System.Nullable<int> _UserId;
+		
+		private int _PostId;
+		
+		private string _PostName;
+		
+		private System.Nullable<int> _Slot;
+		
+		private string _Content;
+		
+		private string _Image;
+		
+		private System.Nullable<int> _Status;
+		
+		private System.Nullable<decimal> _TotalAmount;
+		
+		private System.Nullable<int> _SupportTypeId;
+		
+		private System.Nullable<int> _PostTypeId;
+		
+		private string _SupportTypeName;
+		
+		private System.Nullable<decimal> _Money;
+		
+		private string _PostTypeName;
+		
+		private int _MoneyTypeId;
+		
+		private string _MoneyTypeName;
+		
+		private System.Nullable<double> _Ratio;
+		
+		public sp_ParticipantPost_Load_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantId", DbType="Int NOT NULL")]
+		public int ParticipantId
+		{
+			get
+			{
+				return this._ParticipantId;
+			}
+			set
+			{
+				if ((this._ParticipantId != value))
+				{
+					this._ParticipantId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParticipantName", DbType="NVarChar(MAX)")]
+		public string ParticipantName
+		{
+			get
+			{
+				return this._ParticipantName;
+			}
+			set
+			{
+				if ((this._ParticipantName != value))
+				{
+					this._ParticipantName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(MAX)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this._Phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
+		public System.Nullable<bool> Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonateAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DonateAmount
+		{
+			get
+			{
+				return this._DonateAmount;
+			}
+			set
+			{
+				if ((this._DonateAmount != value))
+				{
+					this._DonateAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birth", DbType="Date")]
+		public System.Nullable<System.DateTime> Birth
+		{
+			get
+			{
+				return this._Birth;
+			}
+			set
+			{
+				if ((this._Birth != value))
+				{
+					this._Birth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostId", DbType="Int NOT NULL")]
+		public int PostId
+		{
+			get
+			{
+				return this._PostId;
+			}
+			set
+			{
+				if ((this._PostId != value))
+				{
+					this._PostId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostName", DbType="NVarChar(MAX)")]
+		public string PostName
+		{
+			get
+			{
+				return this._PostName;
+			}
+			set
+			{
+				if ((this._PostName != value))
+				{
+					this._PostName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slot", DbType="Int")]
+		public System.Nullable<int> Slot
+		{
+			get
+			{
+				return this._Slot;
+			}
+			set
+			{
+				if ((this._Slot != value))
+				{
+					this._Slot = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(MAX)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this._Image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
+		public System.Nullable<int> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this._TotalAmount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeId", DbType="Int")]
+		public System.Nullable<int> SupportTypeId
+		{
+			get
+			{
+				return this._SupportTypeId;
+			}
+			set
+			{
+				if ((this._SupportTypeId != value))
+				{
+					this._SupportTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostTypeId", DbType="Int")]
+		public System.Nullable<int> PostTypeId
+		{
+			get
+			{
+				return this._PostTypeId;
+			}
+			set
+			{
+				if ((this._PostTypeId != value))
+				{
+					this._PostTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupportTypeName", DbType="NVarChar(MAX)")]
+		public string SupportTypeName
+		{
+			get
+			{
+				return this._SupportTypeName;
+			}
+			set
+			{
+				if ((this._SupportTypeName != value))
+				{
+					this._SupportTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Money", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Money
+		{
+			get
+			{
+				return this._Money;
+			}
+			set
+			{
+				if ((this._Money != value))
+				{
+					this._Money = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostTypeName", DbType="NVarChar(MAX)")]
+		public string PostTypeName
+		{
+			get
+			{
+				return this._PostTypeName;
+			}
+			set
+			{
+				if ((this._PostTypeName != value))
+				{
+					this._PostTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeId", DbType="Int NOT NULL")]
+		public int MoneyTypeId
+		{
+			get
+			{
+				return this._MoneyTypeId;
+			}
+			set
+			{
+				if ((this._MoneyTypeId != value))
+				{
+					this._MoneyTypeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyTypeName", DbType="NVarChar(50)")]
+		public string MoneyTypeName
+		{
+			get
+			{
+				return this._MoneyTypeName;
+			}
+			set
+			{
+				if ((this._MoneyTypeName != value))
+				{
+					this._MoneyTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ratio", DbType="Float")]
+		public System.Nullable<double> Ratio
+		{
+			get
+			{
+				return this._Ratio;
+			}
+			set
+			{
+				if ((this._Ratio != value))
+				{
+					this._Ratio = value;
 				}
 			}
 		}

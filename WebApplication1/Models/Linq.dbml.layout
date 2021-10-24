@@ -104,5 +104,11 @@
         <elementListCompartment Id="edfe6578-1feb-4fb4-8f90-72774250ab64" absoluteBounds="12.765, 3.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="5450c016-76e3-4c19-9882-c2616befd31f" absoluteBounds="0.875, 2.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LinqDataContext/MoneyType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ed584995-1955-4811-b462-f33ef0f89fce" absoluteBounds="0.88999999999999968, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
