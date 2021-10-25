@@ -32,5 +32,7 @@ namespace WebApplication1.Models.InputModel
         public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public string StatusName { get; set; }
+        public List<RequestDonor> list_donor { get; set; } 
+        public bool checkLock { get; set; }
     }
 }

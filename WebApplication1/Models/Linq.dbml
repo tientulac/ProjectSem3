@@ -162,6 +162,18 @@
       <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.htUsers" Member="htUsers">
+    <Type Name="htUser">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Admin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="UserCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_CharityFund_Delete" Method="sp_CharityFund_Delete">
     <Parameter Name="FundId" Parameter="fundId" Type="System.Int32" DbType="Int" />
     <ElementType Name="sp_CharityFund_DeleteResult">
@@ -498,18 +510,6 @@
       <Column Name="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_Participant_Insert" Method="sp_Participant_Insert">
-    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Participant_InsertResult">
-      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.sp_ManagerPost_Load_List" Method="sp_ManagerPost_Load_List">
     <ElementType Name="sp_ManagerPost_Load_ListResult">
       <Column Name="ManagerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -550,19 +550,6 @@
       <Column Name="DonateAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_Participant_Update" Method="sp_Participant_Update">
-    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="sp_Participant_UpdateResult">
-      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Post_Delete" Method="sp_Post_Delete">
@@ -841,6 +828,68 @@
       <Column Name="MoneyTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MoneyTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Ratio" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_htUsers_Login" Method="sp_htUsers_Login">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="PassWord" Parameter="passWord" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="sp_htUsers_LoginResult">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Admin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="UserCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_UpdateStatus_Donor" Method="sp_UpdateStatus_Donor">
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DonorId" Parameter="donorId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_UpdateStatus_DonorResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_UpdateStatus_Event" Method="sp_UpdateStatus_Event">
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EventId" Parameter="eventId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_UpdateStatus_EventResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_UpdateStatus_Post" Method="sp_UpdateStatus_Post">
+    <Parameter Name="Status" Parameter="status" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PostId" Parameter="postId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_UpdateStatus_PostResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Participant_Insert" Method="sp_Participant_Insert">
+    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Participant_InsertResult">
+      <Column Name="[Identity]" Member="Identity" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Participant_Update" Method="sp_Participant_Update">
+    <Parameter Name="ParticipantName" Parameter="participantName" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="DonateAmount" Parameter="donateAmount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Birth" Parameter="birth" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ParticipantId" Parameter="participantId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_Participant_UpdateResult">
+      <Column Name="Updated" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

@@ -32,5 +32,7 @@ namespace WebApplication1.Models.InputModel
         public string StatusName { get; set; }
         public int PostTypeId { get; set; }
         public string PostTypeName { get; set; }
+        public bool checkLock { get; set; }
+        public List<RequestPost> list_post { get; set; }
     }
 }

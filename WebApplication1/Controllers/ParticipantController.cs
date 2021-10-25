@@ -238,64 +238,14 @@ namespace WebApplication1.Controllers
             try
             {
                 var rs = participantDAL.Insert(req);
-
-                int err_com = 0;
-                int success_com = 0;
-                int err_event = 0;
-                int success_event = 0;
-                int err_post = 0;
-                int success_post = 0;
-
                 if (rs.FirstOrDefault().Identity > 0)
                 {
-                    if (req.List_com.Count() > 0)
-                    {
-                        foreach (var com in req.List_com)
-                        {
-                            var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money, req.MoneyTypeId);
-                            if (rs_com.Any())
-                            {
-                                success_com++;
-                            }
-                            else
-                            {
-                                err_com++;
-                            }
-                        }
-                    }
-                    if (req.List_event.Count() > 0)
-                    {
-                        var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money, req.MoneyTypeId);
-                        if (rs_event.Any())
-                        {
-                            success_event++;
-                        }
-                        else
-                        {
-                            err_event++;
-                        }
-                    }
-                    if (req.List_post.Count() > 0)
-                    {
-                        var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money, req.MoneyTypeId);
-                        if (rs_post.Any())
-                        {
-                            success_post++;
-                        }
-                        else
-                        {
-                            err_post++;
-                        }
-                    }
                     res.Status = StatusID.Success;
-                    res.Message = String.Format(
-                        "Thêm mới thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người tham gia",
-                        success_com, success_event, success_post, err_com, err_event, err_post
-                        );
+                    res.Message = "Thêm mới thành công !";
                 }
                 else
                 {
-                    res.Status = StatusID.InternalServer;
+                    res.Status = StatusID.Success;
                     res.Message = "Thêm mới thất bại !";
                 }
             }
@@ -318,63 +268,8 @@ namespace WebApplication1.Controllers
                 var rs = participantDAL.Update(req);
                 if (rs.FirstOrDefault().Updated > 0)
                 {
-                    var delete_com = db.sp_ParticipantCommunity_Delete(req.ParticipantId);
-                    var delete_vent = db.sp_ParticipantEvent_Delete(req.ParticipantId);
-                    var delete_post = db.sp_ParticipantPost_Delete(req.ParticipantId);
-                    int err_com = 0;
-                    int success_com = 0;
-                    int err_event = 0;
-                    int success_event = 0;
-                    int err_post = 0;
-                    int success_post = 0;
-
-                    if (delete_com.Any() && delete_vent.Any() && delete_post.Any())
-                    {
-                        if (req.List_com.Count() > 0)
-                        {
-                            foreach (var com in req.List_com)
-                            {
-                                var rs_com = db.sp_ParticipantCommunity_Insert(req.ParticipantId, req.CommunityId, req.Money, req.MoneyTypeId);
-                                if (rs_com.Any())
-                                {
-                                    success_com++;
-                                }
-                                else
-                                {
-                                    err_com++;
-                                }
-                            }
-                        }
-                        if (req.List_event.Count() > 0)
-                        {
-                            var rs_event = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money, req.MoneyTypeId);
-                            if (rs_event.Any())
-                            {
-                                success_event++;
-                            }
-                            else
-                            {
-                                err_event++;
-                            }
-                        }
-                        if (req.List_post.Count() > 0)
-                        {
-                            var rs_post = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money, req.MoneyTypeId);
-                            if (rs_post.Any())
-                            {
-                                success_post++;
-                            }
-                            else
-                            {
-                                err_post++;
-                            }
-                        }
-                        res.Status = StatusID.Success;
-                        res.Message = String.Format(
-                            "Thêm mới thành công {0} Cộng đồng, {1} Sự kiện, {2} Bài viết ! Thất bại {3} Cộng đồng, {4} Sự kiện, {5} Bài viết cho người tham gia",
-                            success_com, success_event, success_post, err_com, err_event, err_post
-                            );
-                    }
+                    res.Status = StatusID.Success;
+                    res.Message = "Cập nhật thành công !";
                 }
                 else
                 {

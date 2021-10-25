@@ -14,26 +14,27 @@ using WebApplication1.Models.OutputModel;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("SupportType")]
+    [RoutePrefix("MoneyType")]
     [AllowAnonymous]
-    public class SupportTypeController : ApiController
+    public class MoneyTypeController : ApiController
     {
         private LinqDataContext db = new LinqDataContext();
-        SupportTypeDAL stDAL = new SupportTypeDAL();
+        MoneyTypeDAL moneyDAL = new MoneyTypeDAL();
 
         //-------------------------------- GET ALL--------------------------------------------
         [HttpGet]
         [Route("Load_List")]
         public async Task<HttpResponseMessage> Load_List()
         {
-            ResponseSupportType res = new ResponseSupportType();
+            ResponseMoneyType res = new ResponseMoneyType();
             try
             {
-                var lst = (from a in stDAL.Load_List()
-                           select new RequestSupportType
+                var lst = (from a in moneyDAL.Load_List()
+                           select new RequestMoneyType
                            {
-                               SupportTypeId = a.SupportTypeId,
-                               SupportTypeName = a.SupportTypeName
+                               MoneyTypeId = a.MoneyTypeId,
+                               MoneyTypeName = a.MoneyTypeName,
+                               Ratio = a.Ratio.GetValueOrDefault()
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;
@@ -57,12 +58,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- INSERT--------------------------------------------
         [HttpPost]
         [Route("Insert")]
-        public async Task<ResponseBase> Insert(RequestSupportType req)
+        public async Task<ResponseBase> Insert(RequestMoneyType req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Insert(req);
+                var rs = moneyDAL.Insert(req);
                 if (rs.FirstOrDefault().Identity > 0)
                 {
                     res.Status = StatusID.Success;
@@ -85,12 +86,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- UPDATE--------------------------------------------
         [HttpPost]
         [Route("Update")]
-        public async Task<ResponseBase> Update(RequestSupportType req)
+        public async Task<ResponseBase> Update(RequestMoneyType req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Update(req);
+                var rs = moneyDAL.Update(req);
                 if (rs.FirstOrDefault().Updated > 0)
                 {
                     res.Status = StatusID.Success;
@@ -113,12 +114,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- DELETE--------------------------------------------
         [HttpGet]
         [Route("Delete")]
-        public async Task<ResponseBase> Delete(int SupportTypeId)
+        public async Task<ResponseBase> Delete(int MoneyTypeId)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Delete(SupportTypeId);
+                var rs = moneyDAL.Delete(MoneyTypeId);
                 if (rs.FirstOrDefault().Deleted > 0)
                 {
                     res.Status = StatusID.Success;

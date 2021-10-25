@@ -46,10 +46,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.13.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.13.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -162,6 +174,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharityFundController.cs" />
     <Compile Include="Controllers\CommunityDonateController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
@@ -169,16 +182,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\MoneyTypeController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\PostTypeController.cs" />
     <Compile Include="Controllers\SupportTypeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DAL\AccountDAL.cs" />
     <Compile Include="DAL\CharityFundDAL.cs" />
     <Compile Include="DAL\CommunityDonateDAL.cs" />
     <Compile Include="DAL\DonorDAL.cs" />
     <Compile Include="DAL\EventDAL.cs" />
     <Compile Include="DAL\LocalDAL.cs" />
     <Compile Include="DAL\ManagerDAL.cs" />
+    <Compile Include="DAL\MoneyTypeDAL.cs" />
     <Compile Include="DAL\ParticipantDAL.cs" />
     <Compile Include="DAL\PostDAL.cs" />
     <Compile Include="DAL\PostTypeDAL.cs" />
@@ -186,12 +203,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\InputModel\RequestBase.cs" />
     <Compile Include="Models\InputModel\RequestCharityFund.cs" />
     <Compile Include="Models\InputModel\RequestCommunityDonate.cs" />
     <Compile Include="Models\InputModel\RequestDonor.cs" />
     <Compile Include="Models\InputModel\RequestEvent.cs" />
     <Compile Include="Models\InputModel\RequestLocal.cs" />
+    <Compile Include="Models\InputModel\RequestLogin.cs" />
     <Compile Include="Models\InputModel\RequestManager.cs" />
     <Compile Include="Models\InputModel\RequestMoneyType.cs" />
     <Compile Include="Models\InputModel\RequestParticipant.cs" />
@@ -208,13 +227,16 @@
     <Compile Include="Models\OutputModel\ResponseDonor.cs" />
     <Compile Include="Models\OutputModel\ResponseEvent.cs" />
     <Compile Include="Models\OutputModel\ResponseLocal.cs" />
+    <Compile Include="Models\OutputModel\ResponseLogin.cs" />
     <Compile Include="Models\OutputModel\ResponseManager.cs" />
     <Compile Include="Models\OutputModel\ResponseMoneyType.cs" />
     <Compile Include="Models\OutputModel\ResponseParticipant.cs" />
     <Compile Include="Models\OutputModel\ResponsePost.cs" />
+    <Compile Include="Models\OutputModel\ResponsePostType.cs" />
     <Compile Include="Models\OutputModel\ResponseSupportType.cs" />
     <Compile Include="Models\ResponseBase.cs" />
     <Compile Include="Models\StatusID.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

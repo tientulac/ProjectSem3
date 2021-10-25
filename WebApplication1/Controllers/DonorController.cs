@@ -120,6 +120,59 @@ namespace WebApplication1.Controllers
             return await Task.FromResult(res);
         }
 
+        //-------------------------------- UPDATE STATUS--------------------------------------------
+        [HttpPost]
+        [Route("UpdateStatus")]
+        public async Task<ResponseBase> UpdateStatus(RequestDonorDTO req)
+        {
+            ResponseBase res = new ResponseBase();
+            try
+            {
+                int success_count = 0;
+                int error_count = 0;
+                int status;
+                if (!req.checkLock)
+                {
+                    status = 3;
+                }
+                else
+                {
+                    status = 2;
+                }
+                if (req.list_donor.Count() > 0)
+                {
+                    foreach (var item in req.list_donor)
+                    {
+                        var rs = db.sp_UpdateStatus_Donor(status, item.DonorId);
+                        if (rs.FirstOrDefault().Updated > 0)
+                        {
+                            res.Status = StatusID.Success;
+                            success_count++;
+                        }
+                        else
+                        {
+                            res.Status = StatusID.InternalServer;
+                            error_count++;
+                        }
+                    }
+                    res.Status = StatusID.Success;
+                    res.Message =String.Format("Cập nhật trạng thái {0} bản ghi, thất bại {1} bản ghi", success_count, error_count);
+                }
+
+                else
+                {
+                    res.Status = StatusID.InternalServer;
+                    res.Message = "Bạn chưa chọn bản ghi cần cập nhật !";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = ex.Message;
+            }
+            return await Task.FromResult(res);
+        }
+
         //-------------------------------- DELETE--------------------------------------------
         [HttpGet]
         [Route("Delete")]

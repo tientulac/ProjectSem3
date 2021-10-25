@@ -14,26 +14,26 @@ using WebApplication1.Models.OutputModel;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("SupportType")]
+    [RoutePrefix("PostType")]
     [AllowAnonymous]
-    public class SupportTypeController : ApiController
+    public class PostTypeController : ApiController
     {
         private LinqDataContext db = new LinqDataContext();
-        SupportTypeDAL stDAL = new SupportTypeDAL();
+        PostTypeDAL ptDAL = new PostTypeDAL();
 
         //-------------------------------- GET ALL--------------------------------------------
         [HttpGet]
         [Route("Load_List")]
         public async Task<HttpResponseMessage> Load_List()
         {
-            ResponseSupportType res = new ResponseSupportType();
+            ResponsePostType res = new ResponsePostType();
             try
             {
-                var lst = (from a in stDAL.Load_List()
-                           select new RequestSupportType
+                var lst = (from a in ptDAL.Load_List()
+                           select new RequestPostType
                            {
-                               SupportTypeId = a.SupportTypeId,
-                               SupportTypeName = a.SupportTypeName
+                               PostTypeId = a.PostTypeId,
+                               PostTypeName = a.PostTypeName
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;
@@ -57,12 +57,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- INSERT--------------------------------------------
         [HttpPost]
         [Route("Insert")]
-        public async Task<ResponseBase> Insert(RequestSupportType req)
+        public async Task<ResponseBase> Insert(RequestPostType req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Insert(req);
+                var rs = ptDAL.Insert(req);
                 if (rs.FirstOrDefault().Identity > 0)
                 {
                     res.Status = StatusID.Success;
@@ -85,12 +85,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- UPDATE--------------------------------------------
         [HttpPost]
         [Route("Update")]
-        public async Task<ResponseBase> Update(RequestSupportType req)
+        public async Task<ResponseBase> Update(RequestPostType req)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Update(req);
+                var rs = ptDAL.Update(req);
                 if (rs.FirstOrDefault().Updated > 0)
                 {
                     res.Status = StatusID.Success;
@@ -113,12 +113,12 @@ namespace WebApplication1.Controllers
         //-------------------------------- DELETE--------------------------------------------
         [HttpGet]
         [Route("Delete")]
-        public async Task<ResponseBase> Delete(int SupportTypeId)
+        public async Task<ResponseBase> Delete(int PostTypeId)
         {
             ResponseBase res = new ResponseBase();
             try
             {
-                var rs = stDAL.Delete(SupportTypeId);
+                var rs = ptDAL.Delete(PostTypeId);
                 if (rs.FirstOrDefault().Deleted > 0)
                 {
                     res.Status = StatusID.Success;

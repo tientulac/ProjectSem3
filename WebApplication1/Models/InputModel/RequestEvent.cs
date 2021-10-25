@@ -36,5 +36,7 @@ namespace WebApplication1.Models.InputModel
         public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public string StatusName { get; set; }
+        public bool checkLock { get; set; }
+        public List<RequestEvent> list_event { get; set; }
     }
 }

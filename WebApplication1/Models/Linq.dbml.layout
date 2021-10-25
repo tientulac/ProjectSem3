@@ -110,5 +110,11 @@
         <elementListCompartment Id="ed584995-1955-4811-b462-f33ef0f89fce" absoluteBounds="0.88999999999999968, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="cf771959-0500-4b90-810f-caac815348e9" absoluteBounds="0.875, 7.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/LinqDataContext/htUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3222e654-87ec-47d7-a618-3245e95ada77" absoluteBounds="0.88999999999999968, 8.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

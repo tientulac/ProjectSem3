@@ -8,21 +8,22 @@ using WebApplication1.Models.InputModel;
 
 namespace WebApplication1.DAL
 {
-    public class PostTypeDAL
+    public class MoneyTypeDAL
     {
         private LinqDataContext db;
-        public PostTypeDAL()
+
+        public MoneyTypeDAL()
         {
             db = new LinqDataContext();
         }
 
         //-------------------------------- LOAD LIST------------------------------------------------
-        public ISingleResult<sp_PostType_Load_ListResult> Load_List()
+        public ISingleResult<sp_MoneyType_Load_ListResult> Load_List()
         {
-            ISingleResult<sp_PostType_Load_ListResult> sp_result;
+            ISingleResult<sp_MoneyType_Load_ListResult> sp_result;
             try
             {
-                sp_result = db.sp_PostType_Load_List();
+                sp_result = db.sp_MoneyType_Load_List();
             }
             catch (Exception ex)
             {
@@ -32,12 +33,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- INSERT------------------------------------------------
-        public ISingleResult<sp_PostType_InsertResult> Insert(RequestPostType req)
+        public ISingleResult<sp_MoneyType_InsertResult> Insert(RequestMoneyType req)
         {
-            ISingleResult<sp_PostType_InsertResult> sp_result;
+            ISingleResult<sp_MoneyType_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_PostType_Insert(req.PostTypeName);
+                sp_result = db.sp_MoneyType_Insert(req.MoneyTypeName,req.Ratio);
             }
             catch (Exception ex)
             {
@@ -47,12 +48,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- UPDATE------------------------------------------------
-        public ISingleResult<sp_PostType_UpdateResult> Update(RequestPostType req)
+        public ISingleResult<sp_MoneyType_UpdateResult> Update(RequestMoneyType req)
         {
-            ISingleResult<sp_PostType_UpdateResult> sp_result;
+            ISingleResult<sp_MoneyType_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_PostType_Update(req.PostTypeName, req.PostTypeId);
+                sp_result = db.sp_MoneyType_Update(req.MoneyTypeName, req.Ratio, req.MoneyTypeId);
             }
             catch (Exception ex)
             {
@@ -62,12 +63,12 @@ namespace WebApplication1.DAL
         }
 
         //-------------------------------- DELETE------------------------------------------------
-        public ISingleResult<sp_PostType_DeleteResult> Delete(int PostTypeId)
+        public ISingleResult<sp_MoneyType_DeleteResult> Delete(int MoneyTypeId)
         {
-            ISingleResult<sp_PostType_DeleteResult> sp_result;
+            ISingleResult<sp_MoneyType_DeleteResult> sp_result;
             try
             {
-                sp_result = db.sp_PostType_Delete(PostTypeId);
+                sp_result = db.sp_MoneyType_Delete(MoneyTypeId);
             }
             catch (Exception ex)
             {

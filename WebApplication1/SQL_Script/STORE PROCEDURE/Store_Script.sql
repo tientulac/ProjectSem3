@@ -1,260 +1,276 @@
-/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_UserEvent_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_UserEvent_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_UserEvent_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_UserEvent_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Post]    Script Date: 10/25/2021 9:43:53 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_UpdateStatus_Post]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[sp_UpdateStatus_Post]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Event]    Script Date: 10/25/2021 9:43:53 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_UpdateStatus_Event]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[sp_UpdateStatus_Event]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Donor]    Script Date: 10/25/2021 9:43:53 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_UpdateStatus_Donor]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[sp_UpdateStatus_Donor]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_SupportType_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_SupportType_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_SupportType_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_SupportType_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_SupportType_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_SupportType_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_SupportType_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_SupportType_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_PostType_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_PostType_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_PostType_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_PostType_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_PostType_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_PostType_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_PostType_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_PostType_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Post_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Post_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Post_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Post_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Post_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Post_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Post_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Post_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantPost_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantPost_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantPost_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantPost_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantPost_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantPost_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantEvent_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantEvent_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantEvent_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantEvent_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantEvent_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantEvent_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantCommunity_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantCommunity_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantCommunity_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantCommunity_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ParticipantCommunity_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ParticipantCommunity_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Participant_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Participant_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Participant_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Participant_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Participant_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Participant_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Participant_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Participant_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_MoneyType_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_MoneyType_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_MoneyType_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_MoneyType_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_MoneyType_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_MoneyType_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_MoneyType_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_MoneyType_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerPost_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerPost_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerPost_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerPost_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerPost_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerPost_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerEvent_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerEvent_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerEvent_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerEvent_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerEvent_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerEvent_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerCommunity_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerCommunity_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerCommunity_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerCommunity_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_ManagerCommunity_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_ManagerCommunity_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Manager_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Manager_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Manager_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Manager_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Manager_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Manager_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Manager_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Manager_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Local_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Local_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Local_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Local_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Local_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Local_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Local_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Local_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_htUsers_Login]    Script Date: 10/25/2021 9:43:53 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_htUsers_Login]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[sp_htUsers_Login]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Event_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Event_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Event_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Event_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Event_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Event_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Event_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Event_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Event_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Donor_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Donor_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Donor_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Donor_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Donor_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Donor_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_Donor_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_Donor_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CommunityDonate_Update]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CommunityDonate_Update]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CommunityDonate_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CommunityDonate_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CommunityDonate_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CommunityDonate_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CommunityDonate_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CommunityDonate_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_UPDATE]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_UPDATE]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CharityFund_UPDATE]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CharityFund_UPDATE]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CharityFund_Load_List]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CharityFund_Load_List]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CharityFund_Insert]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CharityFund_Insert]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CharityFund_Delete]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_CharityFund_Delete]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -268,7 +284,7 @@ IF @@ROWCOUNT = 0
 ELSE 
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,7 +298,7 @@ AS
 		VALUES(@FundName,@TotalAmount,@SupportTypeId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +308,7 @@ AS
 SELECT CharityFund.*,SupportType.SupportTypeName FROM CharityFund
 	INNER JOIN SupportType ON  CharityFund.SupportTypeId = SupportType.SupportTypeId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CharityFund_UPDATE]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CharityFund_UPDATE]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -313,7 +329,7 @@ IF @@ROWCOUNT = 0
 ELSE 
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -327,7 +343,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -345,7 +361,7 @@ AS
 	VALUES(@CommunityName,@Description,@Url,@Slot,@ToTalAmount,@SupportTypeId,@LocalId)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -357,7 +373,7 @@ AS
 	INNER JOIN SupportType type ON com.SupportTypeId = type.SupportTypeId
 	INNER JOIN Local ON com.LocalId = Local.LocalId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_CommunityDonate_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -386,7 +402,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,7 +416,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -419,7 +435,7 @@ AS
 	VALUES(@DonorName,@Address,@Email,@Phone,@ToTalAmount,@Status,@SupportTypeId,@LocalId)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -431,7 +447,7 @@ AS
 	LEFT JOIN SupportType type ON Donor.SupportTypeId = type.SupportTypeId
 	LEFT JOIN Local ON Donor.LocalId = Local.LocalId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Donor_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Donor_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -462,7 +478,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -476,7 +492,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -497,7 +513,7 @@ AS
 	VALUES(@EventName,@FromDate,@ToDate,@Content,@Slot,@DesiredAmount,@DonateAmount,@SupportTypeId,@LocalId,@Status)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -509,7 +525,7 @@ AS
 	LEFT JOIN SupportType type ON Event.SupportTypeId = type.SupportTypeId
 	LEFT JOIN Local ON Event.LocalId = Local.LocalId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Event_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Event_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -544,7 +560,20 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_htUsers_Login]    Script Date: 10/25/2021 9:43:53 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_htUsers_Login]
+	@UserName	nvarchar(20),
+	@PassWord	nvarchar(50)
+AS
+SELECT	*
+FROM	htUsers
+WHERE (UPPER(UserName) = UPPER(@UserName)) AND (PassWord=@PassWord) and Active=1
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Local_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -558,7 +587,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -571,7 +600,7 @@ AS
 	VALUES(@LocalCode,@LocalName)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -580,7 +609,7 @@ CREATE PROC [dbo].[sp_Local_Load_List]
 AS
 	SELECT * FROM Local
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Local_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Local_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -599,7 +628,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -613,7 +642,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -631,7 +660,7 @@ AS
 	VALUES(@ManagerName,@Address,@Email,@Phone,@Gender,@Birth,@UserId)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -642,7 +671,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Manager_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Manager_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -671,7 +700,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -685,7 +714,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -698,7 +727,7 @@ AS
 		VALUES(@ManagerId,@CommunityId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerCommunity_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -716,7 +745,7 @@ ON SupportType.SupportTypeId = CommunityDonate.SupportTypeId
 INNER JOIN Local
 ON Local.LocalId = CommunityDonate.LocalId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -730,7 +759,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -743,7 +772,7 @@ AS
 		VALUES(@ManagerId,@EventId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -764,7 +793,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -778,7 +807,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -791,7 +820,7 @@ AS
 		VALUES(@ManagerId,@PostId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ManagerPost_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -813,7 +842,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -827,7 +856,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -840,7 +869,7 @@ AS
 		VALUES(@MoneyTypeName,@Ratio)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -850,7 +879,7 @@ AS
 SELECT * FROM MoneyType
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_MoneyType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -866,7 +895,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -880,7 +909,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -891,14 +920,17 @@ CREATE PROC [dbo].[sp_Participant_Insert]
 	@Email NVARCHAR(MAX),
 	@Phone NVARCHAR(20),
 	@Gender BIT,
+	@DonateAmount DECIMAL,
 	@Birth DATE,
 	@UserId INT
 AS
-	INSERT INTO Participant(ParticipantName,Address,Email,Phone,Gender,Birth,UserId)
-	VALUES(@ParticipantName,@Address,@Email,@Phone,@Gender,@Birth,@UserId)
+	INSERT INTO Participant(ParticipantName,Address,Email,Phone,Gender,DonateAmount,Birth,UserId)
+	VALUES(@ParticipantName,@Address,@Email,@Phone,@Gender,@DonateAmount,@Birth,@UserId)
 SELECT @@IDENTITY AS 'Identity'
+
+SELECT * FROM Participant
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -909,7 +941,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Participant_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Participant_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -920,6 +952,7 @@ CREATE PROC [dbo].[sp_Participant_Update]
 	@Email NVARCHAR(MAX),
 	@Phone NVARCHAR(20),
 	@Gender BIT,
+	@DonateAmount DECIMAL,
 	@Birth DATE,
 	@UserId INT,
 	@ParticipantId INT
@@ -930,6 +963,7 @@ AS
 	Email = @Email,
 	Phone = @Phone,
 	Gender = @Gender,
+	DonateAmount = @DonateAmount,
 	Birth = @Birth,
 	UserId = @UserId
 	WHERE ParticipantId = @ParticipantId
@@ -938,7 +972,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -952,7 +986,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -967,7 +1001,7 @@ AS
 		VALUES(@ParticipantId,@CommunityId,@Money,@MoneyTypeId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantCommunity_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -987,7 +1021,7 @@ AS
 	INNER JOIN MoneyType money
 	ON ParticipantCommunity.MoneyTypeId = Money.MoneyTypeId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1001,7 +1035,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1016,7 +1050,7 @@ AS
 		VALUES(@ParticipantId,@EventId,@Money,@MoneyTypeId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1040,7 +1074,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1054,7 +1088,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1069,7 +1103,7 @@ AS
 		VALUES(@ParticipantId,@PostId,@Money,@MoneyTypeId)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ParticipantPost_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1093,7 +1127,7 @@ AS
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1107,7 +1141,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1126,7 +1160,7 @@ AS
 	VALUES(@PostName,@Slot,@Content,@Image,@Status,@TotalAmount,@SupportTypeId,@PostTypeId)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1138,7 +1172,7 @@ AS
 	INNER JOIN SupportType ON Post.SupportTypeId = SupportType.SupportTypeId
 	INNER JOIN PostType ON Post.PostTypeId = PostType.PostTypeId
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Post_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_Post_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1168,7 +1202,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1182,7 +1216,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1194,7 +1228,7 @@ INSERT INTO PostType(PostTypeName)
 	VALUES(@PostTypeName)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1203,7 +1237,7 @@ CREATE PROC [dbo].[sp_PostType_Load_List]
 AS
 SELECT * FROM PostType
 GO
-/****** Object:  StoredProcedure [dbo].[sp_PostType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_PostType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1219,7 +1253,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Delete]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Delete]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1233,7 +1267,7 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Deleted
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1245,7 +1279,7 @@ AS
 	VALUES(@SupportTypeName)
 SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1254,7 +1288,7 @@ CREATE PROC [dbo].[sp_SupportType_Load_List]
 AS
 	SELECT * FROM SupportType
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SupportType_Update]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_SupportType_Update]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1271,7 +1305,54 @@ IF @@ROWCOUNT = 0
 ELSE
 	SELECT 1 AS Updated
 GO
-/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Insert]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Donor]    Script Date: 10/25/2021 9:43:53 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[sp_UpdateStatus_Donor]
+@Status INT,
+@DonorId INT
+AS
+UPDATE Donor SET Status = @Status WHERE DonorId = @DonorId
+IF @@ROWCOUNT = 0
+	SELECT 0 AS Updated
+ELSE
+	SELECT 1 AS Updated
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Event]    Script Date: 10/25/2021 9:43:53 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[sp_UpdateStatus_Event]
+@Status INT,
+@EventId INT
+AS
+UPDATE Event SET Status = @Status WHERE EventId = @EventId
+IF @@ROWCOUNT = 0
+	SELECT 0 AS Updated
+ELSE
+	SELECT 1 AS Updated
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateStatus_Post]    Script Date: 10/25/2021 9:43:53 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[sp_UpdateStatus_Post]
+@Status INT,
+@PostId INT
+AS
+UPDATE Post SET Status = @Status WHERE PostId = @PostId
+IF @@ROWCOUNT = 0
+	SELECT 0 AS Updated
+ELSE
+	SELECT 1 AS Updated
+
+	
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Insert]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1288,7 +1369,7 @@ AS
 				VALUES(@TypeEvent,@Perform,@Content,@Moment,@IPAddress,@UserName)
 	SELECT @@IDENTITY AS 'Identity'
 GO
-/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Load_List]    Script Date: 10/24/2021 6:00:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_UserEvent_Load_List]    Script Date: 10/25/2021 9:43:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
