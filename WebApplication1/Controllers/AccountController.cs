@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using WebApplication1.DAL;
 using WebApplication1.Models;
 using WebApplication1.Models.InputModel;
@@ -22,6 +23,7 @@ namespace WebApplication1.Controllers
             db = new LinqDataContext();
         }
         AccountDAL objAccount = new AccountDAL();
+        LogController objUserEvent = new LogController();
 
         public static string GetMD5(string str)
         {
@@ -66,6 +68,7 @@ namespace WebApplication1.Controllers
                     us.UserID = User.UserId;
                     us.FullName = User.FullName;
                     us.Email = User.Email;
+                    us.UserCategory = User.UserCategory.GetValueOrDefault();
                     us.UserName = req.UserName;
 
 
@@ -73,6 +76,13 @@ namespace WebApplication1.Controllers
                     res.Info = us;
                     res.Status = StatusID.Success;
                     res.Message = "Đăng nhập thành công !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                           0,
+                           6,
+                           "Đăg nhập thành công " + json,
+                           us.UserName
+                           ); // tạo sự kiện người dùng
                 }
             }
             catch (Exception ex)

@@ -11,5 +11,6 @@ namespace WebApplication1.Models
         public int UserID { get; set; }
         public string Email { get; set; }
         public string FullName { get; set; }
+        public int UserCategory { get; set; }
     }
 }

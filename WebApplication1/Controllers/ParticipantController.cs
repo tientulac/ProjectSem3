@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
 using WebApplication1.DAL;
 using WebApplication1.Models;
@@ -28,7 +29,7 @@ namespace WebApplication1.Controllers
             ResponseParticipant res = new ResponseParticipant();
             try
             {
-                var lst = (from a in participantDAL.Load_List()
+                var lst = (from a in participantDAL.Load_List() orderby a.DonateAmount
                            select new RequestParticipant
                            {
                                ParticipantId = a.ParticipantId,
@@ -311,6 +312,66 @@ namespace WebApplication1.Controllers
                 res.Message = ex.Message;
             }
             return await Task.FromResult(res);
+        }
+
+        //--------------------------------------------FIND PASSWORD-----------------------------------------------
+        string FromMail = WebConfigurationManager.AppSettings["Email"]; // Lấy email từ web.config
+        string Password = WebConfigurationManager.AppSettings["PasswordEmail"]; //Lấy mật khẩu từ web.config
+        [HttpPost]
+        [Route("SendMail")]
+        public HttpResponseMessage SendMail(RequestParticipant req)
+        {
+            var res = new ResponseBase();
+            try
+            {
+                var user = db.sp_Participant_Load_List().Where(M => M.ParticipantId == req.ParticipantId && M.Email == req.Email).ToList();
+                if (user.Any())
+                {
+                    var fullName = user.FirstOrDefault().ParticipantName.ToString();
+                    if (FromMail != null && req.Email != null && req.Email != "" && FromMail != "")
+                    {
+                        string Subject = String.Format("Thông báo tới người tham gia", req.ParticipantName);
+                        string text = "";
+                        text = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath(@"~/Template/Notification.html"));
+
+                        var Body = text.Replace("/@ParticipantName@/", req.ParticipantName);
+                        Body = Body.Replace("/@ContentMail@/", req.ContentMail);
+
+                        var mail = StaticMail.SendEmailDetail(Subject, Body, Password, FromMail, req.Email);
+
+                        if (mail.Status != StatusID.Success)
+                        {
+                            res.Status = StatusID.InternalServer;
+                            res.Message = string.Format("Lỗi phát sinh {0}", mail.Message);
+                        }
+                        else
+                        {
+                            res.Status = StatusID.Success;
+                            res.Message = "Đã gửi thành công vào mail của người tham gia !";
+                        }
+                    }
+                    else
+                    {
+                        res.Status = StatusID.InternalServer;
+                        res.Message = "Bạn chưa nhập đầy đủ thông tin !";
+                    }
+                }
+                else
+                {
+                    res.Status = StatusID.InternalServer;
+                    res.Message = "Người tham gia chưa đăng kí email !";
+                }
+            }
+            catch (Exception e)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = "Hệ thống xảy ra lỗi phát sinh return " + e.Message;
+            }
+            var stringdata = JsonConvert.SerializeObject(res);
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(stringdata, Encoding.UTF8, "application/json")
+            };
         }
     }
 }

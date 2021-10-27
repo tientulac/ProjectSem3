@@ -15,6 +15,7 @@ namespace WebApplication1.Models.InputModel
         public bool Gender { get; set; }
         public DateTime Birth { get; set; }
         public int UserId { get; set; }
+        public string UserName { get; set; }
         public string GenderName { get; set; }
         public int CommunityId { get; set; }
         public int EventId { get; set; }

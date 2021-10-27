@@ -39,7 +39,8 @@ namespace WebApplication1.Controllers
                                Gender = a.Gender.GetValueOrDefault(),
                                Birth = a.Birth.GetValueOrDefault(),
                                UserId = a.UserId.GetValueOrDefault(),
-                               GenderName = a.Gender == true ? "Nam" : "Nữ"
+                               GenderName = a.Gender == true ? "Nam" : "Nữ",
+                               UserName = db.htUsers.Where(M => M.UserId == a.UserId).FirstOrDefault().UserName.ToUpper()
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;

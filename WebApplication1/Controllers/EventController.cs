@@ -29,6 +29,7 @@ namespace WebApplication1.Controllers
             ResponseEvent res = new ResponseEvent();
             try
             {
+                var us = User.Identity.Name;
                 var lst = (from a in eventDAL.Load_List()
                            select new RequestEventDTO
                            {

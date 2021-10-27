@@ -22,6 +22,7 @@ namespace WebApplication1.Models.InputModel
         public int PostId { get; set; }
         public decimal Money { get; set; }
         public int MoneyTypeId { get; set; }
+        public string ContentMail { get; set; }
         public List<int> List_com { get; set; }
         public List<int> List_event { get; set; }
         public List<int> List_post { get; set; }

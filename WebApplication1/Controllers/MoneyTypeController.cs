@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using WebApplication1.DAL;
 using WebApplication1.Models;
 using WebApplication1.Models.InputModel;
@@ -20,6 +21,7 @@ namespace WebApplication1.Controllers
     {
         private LinqDataContext db = new LinqDataContext();
         MoneyTypeDAL moneyDAL = new MoneyTypeDAL();
+        LogController objUserEvent = new LogController();
 
         //-------------------------------- GET ALL--------------------------------------------
         [HttpGet]
@@ -68,6 +70,13 @@ namespace WebApplication1.Controllers
                 {
                     res.Status = StatusID.Success;
                     res.Message = "Thêm mới thành công !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                           1,
+                           1,
+                           "Thêm mới bản ghi " + json,
+                           User.Identity.Name
+                           ); // tạo sự kiện người dùng
                 }
                 else
                 {
@@ -96,6 +105,13 @@ namespace WebApplication1.Controllers
                 {
                     res.Status = StatusID.Success;
                     res.Message = "Cập nhật thành công !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                           1,
+                           2,
+                           "Cập nhật bản ghi " + json,
+                           User.Identity.Name
+                           ); // tạo sự kiện người dùng
                 }
                 else
                 {
@@ -124,6 +140,12 @@ namespace WebApplication1.Controllers
                 {
                     res.Status = StatusID.Success;
                     res.Message = "Xóa thành công !";
+                    objUserEvent.Insert(
+                           1,
+                           3,
+                           "Xóa bản ghi có ID" + MoneyTypeId,
+                           User.Identity.Name
+                           ); // tạo sự kiện người dùng
                 }
                 else
                 {
