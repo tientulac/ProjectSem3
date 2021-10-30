@@ -69,6 +69,12 @@ namespace WebApplication1.Models
     partial void InserthtUser(htUser instance);
     partial void UpdatehtUser(htUser instance);
     partial void DeletehtUser(htUser instance);
+    partial void InserthtUserFunction(htUserFunction instance);
+    partial void UpdatehtUserFunction(htUserFunction instance);
+    partial void DeletehtUserFunction(htUserFunction instance);
+    partial void InserthtFunction(htFunction instance);
+    partial void UpdatehtFunction(htFunction instance);
+    partial void DeletehtFunction(htFunction instance);
     #endregion
 		
 		public LinqDataContext() : 
@@ -250,6 +256,22 @@ namespace WebApplication1.Models
 			get
 			{
 				return this.GetTable<htUser>();
+			}
+		}
+		
+		public System.Data.Linq.Table<htUserFunction> htUserFunctions
+		{
+			get
+			{
+				return this.GetTable<htUserFunction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<htFunction> htFunctions
+		{
+			get
+			{
+				return this.GetTable<htFunction>();
 			}
 		}
 		
@@ -727,6 +749,76 @@ namespace WebApplication1.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), participantName, address, email, phone, gender, donateAmount, birth, userId, participantId);
 			return ((ISingleResult<sp_Participant_UpdateResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htUsers_Delete")]
+		public ISingleResult<sp_htUsers_DeleteResult> sp_htUsers_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+			return ((ISingleResult<sp_htUsers_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htUsers_Insert")]
+		public ISingleResult<sp_htUsers_InsertResult> sp_htUsers_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PassWord", DbType="NVarChar(50)")] string passWord, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FullName", DbType="NVarChar(50)")] string fullName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Admin", DbType="Bit")] System.Nullable<bool> admin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Active", DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserCategory", DbType="Int")] System.Nullable<int> userCategory)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, passWord, fullName, admin, active, email, userCategory);
+			return ((ISingleResult<sp_htUsers_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htUsers_Update")]
+		public ISingleResult<sp_htUsers_UpdateResult> sp_htUsers_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FullName", DbType="NVarChar(50)")] string fullName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Admin", DbType="Bit")] System.Nullable<bool> admin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Active", DbType="Bit")] System.Nullable<bool> active, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserCategory", DbType="Int")] System.Nullable<int> userCategory)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, fullName, admin, active, email, userCategory);
+			return ((ISingleResult<sp_htUsers_UpdateResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htFunction_Load_User")]
+		public ISingleResult<sp_htFunction_Load_UserResult> sp_htFunction_Load_User([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<sp_htFunction_Load_UserResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htFunctions_Delete")]
+		public ISingleResult<sp_htFunctions_DeleteResult> sp_htFunctions_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionId", DbType="Int")] System.Nullable<int> functionId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), functionId);
+			return ((ISingleResult<sp_htFunctions_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htFunctions_Insert")]
+		public ISingleResult<sp_htFunctions_InsertResult> sp_htFunctions_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionCode", DbType="NVarChar(50)")] string functionCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionName", DbType="NVarChar(200)")] string functionName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), functionCode, functionName);
+			return ((ISingleResult<sp_htFunctions_InsertResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htFunctions_Load_List")]
+		public ISingleResult<sp_htFunctions_Load_ListResult> sp_htFunctions_Load_List()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<sp_htFunctions_Load_ListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htFunctions_Update")]
+		public ISingleResult<sp_htFunctions_UpdateResult> sp_htFunctions_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionCode", DbType="NVarChar(50)")] string functionCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionName", DbType="NVarChar(200)")] string functionName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionId", DbType="Int")] System.Nullable<int> functionId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), functionCode, functionName, functionId);
+			return ((ISingleResult<sp_htFunctions_UpdateResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htUserFunction_Delete")]
+		public ISingleResult<sp_htUserFunction_DeleteResult> sp_htUserFunction_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<sp_htUserFunction_DeleteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_htUserFunction_Insert")]
+		public ISingleResult<sp_htUserFunction_InsertResult> sp_htUserFunction_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FunctionId", DbType="Int")] System.Nullable<int> functionId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, functionId);
+			return ((ISingleResult<sp_htUserFunction_InsertResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -3515,6 +3607,226 @@ namespace WebApplication1.Models
 					this._UserCategory = value;
 					this.SendPropertyChanged("UserCategory");
 					this.OnUserCategoryChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.htUserFunction")]
+	public partial class htUserFunction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserFunctionId;
+		
+		private System.Nullable<int> _UserId;
+		
+		private System.Nullable<int> _FunctionId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserFunctionIdChanging(int value);
+    partial void OnUserFunctionIdChanged();
+    partial void OnUserIdChanging(System.Nullable<int> value);
+    partial void OnUserIdChanged();
+    partial void OnFunctionIdChanging(System.Nullable<int> value);
+    partial void OnFunctionIdChanged();
+    #endregion
+		
+		public htUserFunction()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserFunctionId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserFunctionId
+		{
+			get
+			{
+				return this._UserFunctionId;
+			}
+			set
+			{
+				if ((this._UserFunctionId != value))
+				{
+					this.OnUserFunctionIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserFunctionId = value;
+					this.SendPropertyChanged("UserFunctionId");
+					this.OnUserFunctionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionId", DbType="Int")]
+		public System.Nullable<int> FunctionId
+		{
+			get
+			{
+				return this._FunctionId;
+			}
+			set
+			{
+				if ((this._FunctionId != value))
+				{
+					this.OnFunctionIdChanging(value);
+					this.SendPropertyChanging();
+					this._FunctionId = value;
+					this.SendPropertyChanged("FunctionId");
+					this.OnFunctionIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.htFunctions")]
+	public partial class htFunction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _FuntionId;
+		
+		private string _FunctionCode;
+		
+		private string _FunctionName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFuntionIdChanging(int value);
+    partial void OnFuntionIdChanged();
+    partial void OnFunctionCodeChanging(string value);
+    partial void OnFunctionCodeChanged();
+    partial void OnFunctionNameChanging(string value);
+    partial void OnFunctionNameChanged();
+    #endregion
+		
+		public htFunction()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FuntionId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int FuntionId
+		{
+			get
+			{
+				return this._FuntionId;
+			}
+			set
+			{
+				if ((this._FuntionId != value))
+				{
+					this.OnFuntionIdChanging(value);
+					this.SendPropertyChanging();
+					this._FuntionId = value;
+					this.SendPropertyChanged("FuntionId");
+					this.OnFuntionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionCode", DbType="NVarChar(50)")]
+		public string FunctionCode
+		{
+			get
+			{
+				return this._FunctionCode;
+			}
+			set
+			{
+				if ((this._FunctionCode != value))
+				{
+					this.OnFunctionCodeChanging(value);
+					this.SendPropertyChanging();
+					this._FunctionCode = value;
+					this.SendPropertyChanged("FunctionCode");
+					this.OnFunctionCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(200)")]
+		public string FunctionName
+		{
+			get
+			{
+				return this._FunctionName;
+			}
+			set
+			{
+				if ((this._FunctionName != value))
+				{
+					this.OnFunctionNameChanging(value);
+					this.SendPropertyChanging();
+					this._FunctionName = value;
+					this.SendPropertyChanged("FunctionName");
+					this.OnFunctionNameChanged();
 				}
 			}
 		}
@@ -8975,6 +9287,338 @@ namespace WebApplication1.Models
 				if ((this._Updated != value))
 				{
 					this._Updated = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htUsers_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_htUsers_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htUsers_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_htUsers_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htUsers_UpdateResult
+	{
+		
+		private int _Updated;
+		
+		public sp_htUsers_UpdateResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Updated", DbType="Int NOT NULL")]
+		public int Updated
+		{
+			get
+			{
+				return this._Updated;
+			}
+			set
+			{
+				if ((this._Updated != value))
+				{
+					this._Updated = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htFunction_Load_UserResult
+	{
+		
+		private int _FuntionId;
+		
+		private string _FunctionCode;
+		
+		private string _FunctionName;
+		
+		public sp_htFunction_Load_UserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FuntionId", DbType="Int NOT NULL")]
+		public int FuntionId
+		{
+			get
+			{
+				return this._FuntionId;
+			}
+			set
+			{
+				if ((this._FuntionId != value))
+				{
+					this._FuntionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionCode", DbType="NVarChar(50)")]
+		public string FunctionCode
+		{
+			get
+			{
+				return this._FunctionCode;
+			}
+			set
+			{
+				if ((this._FunctionCode != value))
+				{
+					this._FunctionCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(200)")]
+		public string FunctionName
+		{
+			get
+			{
+				return this._FunctionName;
+			}
+			set
+			{
+				if ((this._FunctionName != value))
+				{
+					this._FunctionName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htFunctions_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_htFunctions_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htFunctions_InsertResult
+	{
+		
+		private System.Nullable<decimal> _Identity;
+		
+		public sp_htFunctions_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Decimal(38,0)")]
+		public System.Nullable<decimal> Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htFunctions_Load_ListResult
+	{
+		
+		private int _FuntionId;
+		
+		private string _FunctionCode;
+		
+		private string _FunctionName;
+		
+		public sp_htFunctions_Load_ListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FuntionId", DbType="Int NOT NULL")]
+		public int FuntionId
+		{
+			get
+			{
+				return this._FuntionId;
+			}
+			set
+			{
+				if ((this._FuntionId != value))
+				{
+					this._FuntionId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionCode", DbType="NVarChar(50)")]
+		public string FunctionCode
+		{
+			get
+			{
+				return this._FunctionCode;
+			}
+			set
+			{
+				if ((this._FunctionCode != value))
+				{
+					this._FunctionCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(200)")]
+		public string FunctionName
+		{
+			get
+			{
+				return this._FunctionName;
+			}
+			set
+			{
+				if ((this._FunctionName != value))
+				{
+					this._FunctionName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htFunctions_UpdateResult
+	{
+		
+		private int _Updated;
+		
+		public sp_htFunctions_UpdateResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Updated", DbType="Int NOT NULL")]
+		public int Updated
+		{
+			get
+			{
+				return this._Updated;
+			}
+			set
+			{
+				if ((this._Updated != value))
+				{
+					this._Updated = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htUserFunction_DeleteResult
+	{
+		
+		private int _Deleted;
+		
+		public sp_htUserFunction_DeleteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Int NOT NULL")]
+		public int Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_htUserFunction_InsertResult
+	{
+		
+		private int _Identity;
+		
+		public sp_htUserFunction_InsertResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Identity]", Storage="_Identity", DbType="Int NOT NULL")]
+		public int Identity
+		{
+			get
+			{
+				return this._Identity;
+			}
+			set
+			{
+				if ((this._Identity != value))
+				{
+					this._Identity = value;
 				}
 			}
 		}

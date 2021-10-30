@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ConfigEmail.cs" />
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\FunctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\InputModel\RequestCommunityDonate.cs" />
     <Compile Include="Models\InputModel\RequestDonor.cs" />
     <Compile Include="Models\InputModel\RequestEvent.cs" />
+    <Compile Include="Models\InputModel\RequestFunction.cs" />
     <Compile Include="Models\InputModel\RequestLocal.cs" />
     <Compile Include="Models\InputModel\RequestLogin.cs" />
     <Compile Include="Models\InputModel\RequestManager.cs" />
@@ -221,7 +223,9 @@
     <Compile Include="Models\InputModel\RequestPost.cs" />
     <Compile Include="Models\InputModel\RequestPostType.cs" />
     <Compile Include="Models\InputModel\RequestSupportType.cs" />
+    <Compile Include="Models\InputModel\RequestUser.cs" />
     <Compile Include="Models\InputModel\RequestUserEvent.cs" />
+    <Compile Include="Models\InputModel\RequestUserFunction.cs" />
     <Compile Include="Models\Linq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +235,7 @@
     <Compile Include="Models\OutputModel\ResponseCommunityDonate.cs" />
     <Compile Include="Models\OutputModel\ResponseDonor.cs" />
     <Compile Include="Models\OutputModel\ResponseEvent.cs" />
+    <Compile Include="Models\OutputModel\ResponseFuntion.cs" />
     <Compile Include="Models\OutputModel\ResponseLocal.cs" />
     <Compile Include="Models\OutputModel\ResponseLogin.cs" />
     <Compile Include="Models\OutputModel\ResponseManager.cs" />
@@ -239,6 +244,7 @@
     <Compile Include="Models\OutputModel\ResponsePost.cs" />
     <Compile Include="Models\OutputModel\ResponsePostType.cs" />
     <Compile Include="Models\OutputModel\ResponseSupportType.cs" />
+    <Compile Include="Models\OutputModel\ResponseUser.cs" />
     <Compile Include="Models\OutputModel\ResponseUserEvent.cs" />
     <Compile Include="Models\ResponseBase.cs" />
     <Compile Include="Models\StatusID.cs" />
@@ -247,6 +253,47 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <Content Include="bin\Microsoft.IdentityModel.JsonWebTokens.xml" />
+    <Content Include="bin\Microsoft.IdentityModel.Logging.dll" />
+    <Content Include="bin\Microsoft.IdentityModel.Logging.xml" />
+    <Content Include="bin\Microsoft.IdentityModel.Tokens.dll" />
+    <Content Include="bin\Microsoft.IdentityModel.Tokens.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\System.IdentityModel.Tokens.Jwt.dll" />
+    <Content Include="bin\System.IdentityModel.Tokens.Jwt.xml" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Cors.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Http.Cors.dll" />
+    <Content Include="bin\System.Web.Http.Cors.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebApplication1.dll" />
+    <Content Include="bin\WebApplication1.pdb" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -280,6 +327,7 @@
       <LastGenOutput>Linq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="bin\WebApplication1.dll.config" />
     <None Include="Models\Linq.dbml.layout">
       <DependentUpon>Linq.dbml</DependentUpon>
     </None>
