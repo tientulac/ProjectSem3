@@ -14,5 +14,6 @@ namespace WebApplication1.Models
         public string FullName { get; set; }
         public int UserCategory { get; set; }
         public List<RequestFunction> Functions { get; set; }
+        public int ParticipantId { get; set; }
     }
 }

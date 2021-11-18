@@ -25,17 +25,8 @@ namespace WebApplication1.Models.InputModel
         public List<int> List_post { get; set; }
     }
 
-    public class RequestManagerCommunityDTO {
-        public int ManagerId { get; set; }
-        public string ManagerName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public bool Gender { get; set; }
-        public DateTime Birth { get; set; }
-        public int UserId { get; set; }
-        public string GenderName { get; set; }
-        public int CommunityId { get; set; }
+    public class RequestManagerCommunityDTO : RequestManager
+    {
         public string CommunityName { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
@@ -47,17 +38,8 @@ namespace WebApplication1.Models.InputModel
         public string LocalName { get; set; }
     }
 
-    public class RequestManagerEventDTO {
-        public int ManagerId { get; set; }
-        public string ManagerName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public bool Gender { get; set; }
-        public DateTime Birth { get; set; }
-        public int UserId { get; set; }
-        public string GenderName { get; set; }
-        public int EventId { get; set; }
+    public class RequestManagerEventDTO : RequestManager
+    {
         public string EventName { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
@@ -73,17 +55,8 @@ namespace WebApplication1.Models.InputModel
         public string StatusName { get; set; }
     }
 
-    public class RequestManagerPostDTO {
-        public int ManagerId { get; set; }
-        public string ManagerName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public bool Gender { get; set; }
-        public string GenderName { get; set; }
-        public DateTime Birth { get; set; }
-        public int UserId { get; set; }
-        public int PostId { get; set; }
+    public class RequestManagerPostDTO : RequestManager
+    {
         public string PostName { get; set; }
         public int Slot { get; set; }
         public string Content { get; set; }

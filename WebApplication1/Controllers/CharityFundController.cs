@@ -36,7 +36,8 @@ namespace WebApplication1.Controllers
                                FundName = a.FundName,
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
                                SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
-                               SupportTypeName = a.SupportTypeName
+                               SupportTypeName = a.SupportTypeName,
+                               Image = a.Image
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;

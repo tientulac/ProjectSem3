@@ -65,6 +65,17 @@ namespace WebApplication1.Controllers
                 }
                 else
                 {
+                    int participantId;
+                    int UserCategory = (int)db.htUsers.Where(M => M.UserName == req.UserName).FirstOrDefault().UserCategory;
+                    if (UserCategory == 1 || UserCategory == null)
+                    {
+                        participantId = 0;
+                    }
+                    else
+                    {
+                        int UserID_get = db.htUsers.Where(M => M.UserName == req.UserName).FirstOrDefault().UserId;
+                        participantId = db.Participants.Where(M => M.UserId == UserID_get).FirstOrDefault().ParticipantId;
+                    }                    
                     var User = MemberLogin.FirstOrDefault();
                     res.Info = new UserInfo();
                     UserInfo us = new UserInfo();
@@ -73,7 +84,7 @@ namespace WebApplication1.Controllers
                     us.Email = User.Email;
                     us.UserName = req.UserName;
                     us.UserCategory = req.UserCategory;
-
+                    us.ParticipantId = participantId;
                     // Lấy ra quyền của người dùng
                     var lst_functions = (from a in db.sp_htFunction_Load_User(us.UserID)
                                          select new RequestFunction

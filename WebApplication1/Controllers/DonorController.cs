@@ -43,7 +43,9 @@ namespace WebApplication1.Controllers
                                LocalId = a.LocalId.GetValueOrDefault(),
                                SupportTypeName = a.SupportTypeName,
                                LocalName = a.LocalName,
-                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt" 
+                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
+                               Image = a.Image,
+                               Title = a.Title
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;

@@ -120,5 +120,50 @@ namespace WebApplication1.DAL
             }
             return sp_result;
         }
+
+
+        //-------------------------------- PARTICIPANT COMMUNITY INSERT------------------------------------------------
+        public ISingleResult<sp_ParticipantCommunity_InsertResult> sp_ParticipantCommunity_Insert(RequestParticipant req)
+        {
+            ISingleResult<sp_ParticipantCommunity_InsertResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantCommunity_Insert(req.ParticipantId,req.CommunityId,req.Money,req.MoneyTypeId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+        //-------------------------------- PARTICIPANT EVENT INSERT------------------------------------------------
+        public ISingleResult<sp_ParticipantEvent_InsertResult> sp_ParticipantEvent_Insert(RequestParticipant req)
+        {
+            ISingleResult<sp_ParticipantEvent_InsertResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantEvent_Insert(req.ParticipantId, req.EventId, req.Money, req.MoneyTypeId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
+
+        //-------------------------------- PARTICIPANT POST INSERT------------------------------------------------
+        public ISingleResult<sp_ParticipantPost_InsertResult> sp_ParticipantPost_Insert(RequestParticipant req)
+        {
+            ISingleResult<sp_ParticipantPost_InsertResult> sp_result;
+            try
+            {
+                sp_result = db.sp_ParticipantPost_Insert(req.ParticipantId, req.PostId, req.Money, req.MoneyTypeId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sp_result;
+        }
     }
 }

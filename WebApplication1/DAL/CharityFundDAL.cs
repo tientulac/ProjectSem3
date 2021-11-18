@@ -36,7 +36,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_CharityFund_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_CharityFund_Insert(req.FundName,req.TotalAmount,req.SupportTypeId);
+                sp_result = db.sp_CharityFund_Insert(req.FundName,req.TotalAmount,req.SupportTypeId,req.Image);
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_CharityFund_UPDATEResult> sp_result;
             try
             {
-                sp_result = db.sp_CharityFund_UPDATE(req.FundName, req.TotalAmount, req.SupportTypeId,req.FundId);
+                sp_result = db.sp_CharityFund_UPDATE(req.FundName, req.TotalAmount, req.SupportTypeId, req.Image,req.FundId);
             }
             catch (Exception ex)
             {

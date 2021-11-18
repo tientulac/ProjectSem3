@@ -16,19 +16,12 @@ namespace WebApplication1.Models.InputModel
         public int Status { get; set; }
         public int SupportTypeId { get; set; }
         public int LocalId {get;set;}
+        public string Image { get; set; }
+        public string Title { get; set; }
     }
 
-    public class RequestDonorDTO
+    public class RequestDonorDTO : RequestDonor
     {
-        public int DonorId { get; set; }
-        public string DonorName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public decimal TotalAmount { get; set; }
-        public int Status { get; set; }
-        public int SupportTypeId { get; set; }
-        public int LocalId { get; set; }
         public string SupportTypeName { get; set; }
         public string LocalName { get; set; }
         public string StatusName { get; set; }

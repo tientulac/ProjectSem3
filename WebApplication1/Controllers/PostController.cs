@@ -43,7 +43,8 @@ namespace WebApplication1.Controllers
                                SupportTypeName = a.SupportTypeName,
                                PostTypeId = a.PostTypeId.GetValueOrDefault(),
                                PostTypeName = a.PostTypeName,
-                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt"
+                               StatusName = a.Status == 1 ? "Chờ duyệt" : a.Status == 2 ? "Đã duyệt" : "Từ chối duyệt",
+                               Title = a.Title
                            }).ToList();
                 res.Data = lst;
                 res.Status = StatusID.Success;

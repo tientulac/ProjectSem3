@@ -37,7 +37,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_CommunityDonate_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_CommunityDonate_Insert(req.CommunityName,req.Description,req.Url,req.Slot,req.TotalAmount,req.SupportTypeId, req.LocalId);
+                sp_result = db.sp_CommunityDonate_Insert(req.CommunityName,req.Description,req.Url,req.Slot,req.TotalAmount,req.SupportTypeId,req.LocalId,req.Image,req.Title);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_CommunityDonate_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_CommunityDonate_Update(req.CommunityName, req.Description, req.Url, req.Slot, req.TotalAmount, req.SupportTypeId, req.LocalId,req.CommunityId);
+                sp_result = db.sp_CommunityDonate_Update(req.CommunityName, req.Description, req.Url, req.Slot, req.TotalAmount, req.SupportTypeId, req.LocalId,req.Image,req.Title,req.CommunityId);
             }
             catch (Exception ex)
             {

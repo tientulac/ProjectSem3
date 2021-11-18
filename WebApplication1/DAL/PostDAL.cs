@@ -37,7 +37,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_Post_InsertResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Insert(req.PostName,req.Slot,req.Content,req.Image,req.Status,req.TotalAmount,req.SupportTypeId,req.PostTypeId);
+                sp_result = db.sp_Post_Insert(req.PostName,req.Slot,req.Content,req.Image,req.Status,req.TotalAmount,req.SupportTypeId,req.PostTypeId,req.Title);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace WebApplication1.DAL
             ISingleResult<sp_Post_UpdateResult> sp_result;
             try
             {
-                sp_result = db.sp_Post_Update(req.PostName, req.Slot, req.Content, req.Image, req.Status, req.TotalAmount, req.SupportTypeId, req.PostTypeId,req.PostId);
+                sp_result = db.sp_Post_Update(req.PostName, req.Slot, req.Content, req.Image, req.Status, req.TotalAmount, req.SupportTypeId, req.PostTypeId,req.Title,req.PostId);
             }
             catch (Exception ex)
             {

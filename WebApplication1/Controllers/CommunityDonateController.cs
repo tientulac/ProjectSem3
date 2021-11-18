@@ -41,6 +41,8 @@ namespace WebApplication1.Controllers
                                TotalAmount = a.TotalAmount.GetValueOrDefault(),
                                SupportTypeId = a.SupportTypeId.GetValueOrDefault(),
                                SupportTypeName = a.SupportTypeName,
+                               Image = a.Image,
+                               Title = a.Title,
                                Url = a.Url
                            }).ToList();
                 res.Data = lst;

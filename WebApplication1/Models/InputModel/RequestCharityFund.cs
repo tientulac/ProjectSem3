@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication1.Models.InputModel
+namespace WebApplication1.Models.InputModel 
 {
     public class RequestCharityFund
     {
@@ -11,14 +11,11 @@ namespace WebApplication1.Models.InputModel
         public string FundName { get; set; }
         public decimal TotalAmount { get; set; }
         public int SupportTypeId { get; set; }
+        public string Image { get; set; }
     }
 
-    public class RequestCharityFundDTO
+    public class RequestCharityFundDTO : RequestCharityFund
     {
-        public int FundId { get; set; }
-        public string FundName { get; set; }
-        public decimal TotalAmount { get; set; }
-        public int SupportTypeId { get; set; }
         public string SupportTypeName { get; set; }
     }
 }

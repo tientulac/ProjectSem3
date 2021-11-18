@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using WebApplication1.DAL;
 using WebApplication1.Models;
 using WebApplication1.Models.InputModel;
@@ -21,6 +23,63 @@ namespace WebApplication1.Controllers
     {
         private LinqDataContext db = new LinqDataContext();
         ParticipantDAL participantDAL = new ParticipantDAL();
+        LogController objUserEvent = new LogController();
+
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] frData = Encoding.UTF8.GetBytes(str);
+            byte[] tgData = md5.ComputeHash(frData);
+            string hashString = "";
+            for (int i = 0; i < tgData.Length; i++)
+            {
+                hashString += tgData[i].ToString("x2");
+            }
+            return hashString;
+        }
+
+        //-------------------------------- EXCEL--------------------------------------------
+        [HttpGet]
+        [Route("Excel")]
+        public async Task<HttpResponseMessage> Excel()
+        {
+            ResponseParticipant resPart = new ResponseParticipant();
+            ResponseFile res = new ResponseFile();
+            ExcelLayer ex = new ExcelLayer();
+            try
+            {
+                var lst = (from a in participantDAL.Load_List()
+                           orderby a.DonateAmount
+                           select new RequestParticipant
+                           {
+                               ParticipantId = a.ParticipantId,
+                               ParticipantName = a.ParticipantName,
+                               DonateAmount = a.DonateAmount.GetValueOrDefault(),
+                               Address = a.Address,
+                               Email = a.Email,
+                               Phone = a.Phone,
+                               Gender = a.Gender.GetValueOrDefault(),
+                               Birth = a.Birth.GetValueOrDefault(),
+                               UserId = a.UserId.GetValueOrDefault(),
+                               GenderName = a.Gender == true ? "Nam" : "Nữ"
+                           }).ToList();
+                resPart.Data = lst;
+                res.Status = StatusID.Success;
+                byte[] excelData = ex.ExportParticipant(lst);
+                res.FileData = Convert.ToBase64String(excelData);
+            }
+            catch (Exception e)
+            {
+                res.Message = e.Message;
+                res.Status = StatusID.InternalServer;
+            }
+            var stringdata = JsonConvert.SerializeObject(res);
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(stringdata, Encoding.UTF8, "application/json")
+            };
+        }
+
         //-------------------------------- GET ALL--------------------------------------------
         [HttpGet]
         [Route("Load_List")]
@@ -372,6 +431,144 @@ namespace WebApplication1.Controllers
             {
                 Content = new StringContent(stringdata, Encoding.UTF8, "application/json")
             };
+        }
+
+        [HttpPost]
+        [Route("InsertCommunity")]
+        public async Task<ResponseBase> InsertCommunity(RequestParticipant req)
+        {
+            ResponseBase res = new ResponseBase();
+            try
+            {
+                var rs = participantDAL.sp_ParticipantCommunity_Insert(req);
+                if (rs.FirstOrDefault().Identity > 0)
+                {
+                    db.sp_UpdateMoney_Category(1, req.CommunityId, req.Money, 1);
+                    db.sp_UpdateMoney_Participant(req.Money, req.UserId);
+                    res.Status = StatusID.Success;
+                    res.Message = "Tks you for your Donate ^^ !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                        6,
+                        1,
+                        "Sự kiện donate" + json,
+                        req.UserName
+                   ); // tạo sự kiện người dùng
+                }
+                else
+                {
+                    res.Status = StatusID.InternalServer;
+                    res.Message = "Thêm mới thất bại !";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = ex.Message;
+            }
+            return await Task.FromResult(res);
+        }
+
+        [HttpPost]
+        [Route("InsertEvent")]
+        public async Task<ResponseBase> InsertEvent(RequestParticipant req)
+        {
+            ResponseBase res = new ResponseBase();
+            try
+            {
+                var rs = participantDAL.sp_ParticipantEvent_Insert(req);
+                if (rs.FirstOrDefault().Identity > 0)
+                {
+                    db.sp_UpdateMoney_Category(2, req.EventId, req.Money, 1);
+                    db.sp_UpdateMoney_Participant(req.Money, req.UserId);
+                    res.Status = StatusID.Success;
+                    res.Message = "Tks you for your Donate ^^ !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                        6,
+                        1,
+                        "Sự kiện donate" + json,
+                        req.UserName
+                   ); // tạo sự kiện người dùng
+                }
+                else
+                {
+                    res.Status = StatusID.Success;
+                    res.Message = "Thêm mới thất bại !";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = ex.Message;
+            }
+            return await Task.FromResult(res);
+        }
+
+        [HttpPost]
+        [Route("InsertPost")]
+        public async Task<ResponseBase> InsertPost(RequestParticipant req)
+        {
+            ResponseBase res = new ResponseBase();
+            try
+            {
+                var rs = participantDAL.sp_ParticipantPost_Insert(req);
+                if (rs.FirstOrDefault().Identity > 0)
+                {
+                    db.sp_UpdateMoney_Category(3, req.PostId, req.Money, 1);
+                    db.sp_UpdateMoney_Participant(req.Money, req.UserId);
+                    res.Status = StatusID.Success;
+                    res.Message = "Tks you for your Donate ^^ !";
+                    var json = new JavaScriptSerializer().Serialize(req);
+                    objUserEvent.Insert(
+                        6,
+                        1,
+                        "Sự kiện donate" + json,
+                        req.UserName
+                   ); // tạo sự kiện người dùng
+                }
+                else
+                {
+                    res.Status = StatusID.Success;
+                    res.Message = "Thêm mới thất bại !";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = ex.Message;
+            }
+            return await Task.FromResult(res);
+        }
+
+        //-------------------------------- INSERT--------------------------------------------
+        [HttpPost]
+        [Route("Register")]
+        public async Task<ResponseBase> Register(RequestParticipant req)
+        {
+            ResponseBase res = new ResponseBase();
+            try
+            {
+                req.Password = GetMD5(req.Password);
+                var rs = participantDAL.Insert(req);
+                if (rs.FirstOrDefault().Identity > 0)
+                {
+                    db.sp_htUsers_Insert(req.UserName, req.Password, req.ParticipantName, false, true, req.Email, req.UserCategory);
+                    res.Status = StatusID.Success;
+                    res.Message = "Register Successfully !";
+                }
+                else
+                {
+                    res.Status = StatusID.Success;
+                    res.Message = "Thêm mới thất bại !";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = StatusID.InternalServer;
+                res.Message = ex.Message;
+            }
+            return await Task.FromResult(res);
         }
     }
 }
